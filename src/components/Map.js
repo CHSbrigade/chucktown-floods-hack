@@ -1,19 +1,18 @@
 import React from 'react'
 import ReactMapGL from 'react-map-gl'
+import ContainerDimensions from 'react-container-dimensions'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-export default class extends React.Component {
-  constructor () {
-    super()
+class Map extends React.Component {
+  constructor (props) {
+    super(props)
 
     this.state = {
       viewport: {
-        height: 800,
-        width: 800,
         latitude: 32.7765,
         longitude: -79.9311,
-        zoom: 10,
+        zoom: 13,
       }
     }
 
@@ -22,11 +21,22 @@ export default class extends React.Component {
 
   render () {
     return (
-      <ReactMapGL
-        {...this.state.viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        onViewportChange={this.updateViewport}
-      />
+      <div style={{ height: '100vh', width: '100vw' }}>
+        <ContainerDimensions>
+          {({width, height}) => {
+            return (
+              <ReactMapGL
+                id='map'
+                height={height}
+                width={width}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                onViewportChange={this.updateViewport}
+                {...this.state.viewport }
+              />
+            )
+          }}
+        </ContainerDimensions>
+      </div>
     )
   }
 
@@ -34,3 +44,5 @@ export default class extends React.Component {
     this.setState({ viewport })
   }
 }
+
+export default Map
