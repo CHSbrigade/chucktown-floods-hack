@@ -16,6 +16,8 @@ export const performSearch = ({
       return
     }
 
+    console.log('yay', )
+
     handleResult(mockSearchResult())
   }, 1200)
 }
