@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import InputLabel from '@material-ui/core/InputLabel'
-import Map from './components/Map'
+import MapContainer from './components/MapContainer'
 import ResultCard from './components/ResultCard'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -252,7 +252,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/map" component={Map} />
+            <Route exact path="/map" component={MapContainer} />
             <Route path="/resource/:id" component={ResourceDetail} />
           </Switch>
         </BrowserRouter>
