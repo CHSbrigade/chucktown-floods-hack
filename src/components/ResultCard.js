@@ -22,7 +22,8 @@ import { prop, map, __ } from 'ramda'
 
 const styles = theme => ({
   card: {
-    maxWidth: 400
+    width: '80%',
+    margin: '0 auto'
   },
   media: {
     height: 0,
