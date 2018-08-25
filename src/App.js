@@ -171,38 +171,37 @@ const Home = props => {
           className="vh-100 dt w-100 tc bg-dark-gray white cover"
           style={{ background: `url(${bg}) no-repeat center` }}
         >
-          <div className="dtc v-mid">
-            <header className="white-70" />
-            <div className="w-50 center">
-              <h2 className="f2 fw1 i white">
-                Search For Flooding Related Material in The Greater Charleston
-                Area
-              </h2>
-            </div>
-            <div>
-              <Paper className={props.classes.root} elevation={1}>
-                <form onSubmit={props.handleSearchRequest}>
-                  <FormControl fullWidth className={props.classes.margin}>
-                    <Input
-                      id="adornment-amount"
-                      value={'wow'}
-                      onChange={() => {}}
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <Search />
-                        </InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                </form>
-              </Paper>
-            </div>
+        <div className="dtc v-mid">
+          <header className="white-70" />
+          <div className="w-50 center">
+            <h2 className="f2 fw1 i white">
+              Search For Flooding Related Material in The Greater Charleston
+              Area
+            </h2>
+          </div>
+          <div>
+            <Paper className={props.classes.root} elevation={1}>
+              <form onSubmit={props.handleSearchRequest}>
+                <FormControl fullWidth className={props.classes.margin}>
+                  <Input
+                    id="adornment-amount"
+                    value={'wow'}
+                    onChange={() => {}}
+                    startAdornment={(
+                      <InputAdornment position="start">
+                        <Search />
+                      </InputAdornment>
+                    )}
+                  />
+                </FormControl>
+              </form>
+            </Paper>
           </div>
         </div>
-      )}
-    </div>
-  )
-}
+      </div>
+    )}
+  </div>
+)
 
 class App extends Component {
   constructor(props) {
