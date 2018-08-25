@@ -11,7 +11,6 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Map from './components/Map'
 import ResultCard from './components/ResultCard'
-import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import FormHelperText from '@material-ui/core/FormHelperText'
@@ -25,6 +24,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
 import Grid from '@material-ui/core/Grid'
+import ResourceDetail from './components/ResourceDetail'
 import { withRouter } from 'react-router'
 
 const styles = theme => ({
@@ -151,9 +151,7 @@ const SearchComp = props => {
     </div>
   )
 }
-
 const Home = props => {
-  return (
     <div>
       {props.searchFetching ? (
         <Redirect to="/search" />
@@ -245,6 +243,7 @@ class App extends Component {
               )}
             />
             <Route exact path="/map" component={Map} />
+            <Route path="/resource/:id" component={ResourceDetail} />
           </Switch>
         </BrowserRouter>
       </div>
