@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^1.5.1",
     "@material-ui/icons": "^2.0.3",
+    "algoliasearch": "^3.30.0",
     "ramda": "^0.25.0",
     "react": "^16.4.2",
     "react-container-dimensions": "^1.4.1",

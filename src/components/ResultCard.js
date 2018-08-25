@@ -73,11 +73,11 @@ class ResultCard extends React.Component {
           action={
             <IconButton>
               <a
-                style={{ textDecoration: 'none', color: 'black !important' }}
+                style={{ textDecoration: 'none' }}
                 href={this.props.url}
                 target="_blank"
               >
-                <OpenInNew />
+                <OpenInNew style={{ textDecoration: 'none', color: 'black' }} />
               </a>
             </IconButton>
           }

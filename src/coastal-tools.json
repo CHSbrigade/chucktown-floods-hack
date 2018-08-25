@@ -2,116 +2,198 @@
   {
     "id": 1,
     "title": "A Guide to Assessing Green Infrasturcture Costs and Benefits for Flood Reduction",
-    "url": " https://coast.noaa.gov/data/digitalcoast/pdf/gi-cost-benefit.pdf"
+    "url": "https://coast.noaa.gov/data/digitalcoast/pdf/gi-cost-benefit.pdf",
+    "description": "The purpose of this guide is to provide a process that communities can use to assess the costsand benefits of green infrastructure to reduce flooding. The guide takes a step-by-step, watershedbasedapproach to documenting the costs of flooding; projecting increased flooding and associatedcosts under future land use and climate conditions; and calculating benefits and costs of reducingflooding with green infrastructure over the long term. The guide is based on the experiences of threecommunities in the Great Lakes region (Duluth, Minnesota; Toledo, Ohio; and Green Bay, Wisconsin).To ensure transferability to different types of watersheds and communities, the methods were appliedto the He‘eia watershed in Hawai‘i. Valuable transferability insights from the He‘eia watershed partnershave been incorporated.",
+    "categories": ["community-resources"]
   },
   {
     "id": 2,
     "title": "American Red Cross Ready Rating",
-    "url": "https://www.readyrating.org/Resource-Center/Emergency-Planning/hazard-and-vulnerabilityassessment?utm_source=AnonOnPageLink&utm_medium=Link&utm_term=AnonUser&utm_content=ResourceLinks&utm_campaign=AnonOnPageLink"
+    "url": "https://www.readyrating.org/Resource-Center/Emergency-Planning/hazard-and-vulnerabilityassessment?utm_source=AnonOnPageLink&utm_medium=Link&utm_term=AnonUser&utm_content=ResourceLinks&utm_campaign=AnonOnPageLink",
+    "description": "Ready Rating is a program that helps businesses, schools and organizations become prepared for disasters and other emergencies. All in one place, Ready Rating members have access to one-of-a-kind tools, resources and information for evaluating and improving their ability to withstand disaster, maintain operations, and protect lives and property. Whether you are taking your first steps or have a fully-functioning emergency management program, the Ready Rating program can help you achieve a higher level of preparedness.",
+    "categories": ["community-resources"]
   },
   {
     "id": 3,
     "title": "Building Resilience Against Climate Effects (BRACE)",
-    "url": "https://www.cdc.gov/climateandhealth/BRACE.htm"
+    "url": "https://www.cdc.gov/climateandhealth/BRACE.htm",
+    "description": "The Building Resilience Against Climate Effects (BRACE) framework is a five-step process that allows health officials to develop strategies and programs to help communities prepare for the health effects of climate change. Part of this effort involves incorporating complex atmospheric data and both short and long range climate projections into public health planning and response activities. Combining atmospheric data and projections with epidemiologic analysis allows health officials to more effectively anticipate, prepare for, and respond to a range of climate sensitive health impacts.",
+    "categories": ["community-resources"]
   },
   {
     "id": 4,
     "title": "Building Resilient States: A Framework for Agencies",
-    "url": "https://smartgrowthamerica.org/resources/building-resilient-states-a-framework-for-agencies/?download=yes&key=43746757"
+    "url": "https://smartgrowthamerica.org/resources/building-resilient-states-a-framework-for-agencies/?download=yes&key=43746757",
+    "description": "Storms, floods, droughts, landslides, and wildfires have affected thousands of individuals, families, businesses, and communities across the United States in recent years. 2012 stands out as particularly devastating. Hurricane Sandy received much attention but a total of 28 states had federal major disaster declarations that year. Many other disasters, emergencies, fire management situations, and other significant events that did not qualify for a Presidential declaration. And unfortunately, the frequency and severity of extreme weather events is only expected to increase in years to come.",
+    "categories": ["community-resources"]
   },
   {
     "id": 5,
     "title": "Climate Central Surging Seas",
-    "url": "http://sealevel.climatecentral.org/"
+    "url": "http://sealevel.climatecentral.org/",
+    "description": "Search or navigate our interactive tools above to see maps of areas below different amounts of sea level rise and flooding, down to neighborhood scale, matched with area timelines of risk. The tool also provides statistics of population, homes and land affected by city, county and state, plus links to factsheets, data downloads, action plans, embeddable widgets, and more.",
+    "categories": ["tool", "data-visualizations"]
   },
   {
     "id": 6,
     "title": "Climate Change & Extreme Weather Vulnerability Assessment Framework",
-    "url": "https://www.fhwa.dot.gov/environment/sustainability/resilience/publications/vulnerability_assessmen"
+    "url": "https://www.fhwa.dot.gov/environment/sustainability/resilience/publications/vulnerability_assessment",
+    "description": "Incorporation of climate change impacts into transportation decisions is still a relatively new concept. As decision makers in various sectors grapple with information on climate change effects and how they may or may not impact their core mission(s), they are turning to existing tools and approaches for guidance. To date, three closely-related approaches are being used to help transportation decision makers consider and prepare for future climate impacts: vulnerability assessment, risk assessment, and adaptation assessment.",
+    "categories": ["community-resources"]
   },
   {
     "id": 7,
     "title": "Climate Change Vulnerability Assessment Tool for Coastal Habitats (CCVATCH)",
-    "url": "http://sealevel.climatecentral.org/"
+    "url": "https://ccvatch.wordpress.com/",
+    "description": "The National Estuarine Research Reserve System has developed a new tool to help communities understand how rising sea levels and changes in climate patterns will impact coastal habitats and the benefits they provide. The CCVATCH is an evaluation process that brings scientists and decision makers together to create a shared understanding of how changes in climate and management practices will make a habitat more or less vulnerable in the future. Communities can use this knowledge to adapt their management, restoration, and conservation strategies to maintain the health of these habitats as environmental conditions change over time.",
+    "categories": ["tools", "data-visualizations"]
   },
   {
     "id": 8,
     "title": "Climate Explorer",
-    "url": "https://toolkit.climate.gov/tools/climate-explorer"
+    "url": "https://toolkit.climate.gov/tools/climate-explorer",
+    "description": "The Climate Explorer offers graphs, maps, and data downloads of observed and projected climate variables for every county in the contiguous United States. The tool shows projected conditions for two possible futures: one in which humans make a moderate attempt to reduce global emissions of heat-trapping gases, and one in which human emissions of heat-trapping gases continues increasing through 2100. You can learn more about the data displayed in the Climate Explorer in the About text and Definitions and FAQs within the application. The Climate Explorer has three main sections: Select a location, View by variable, and Weather and Tidal Stations. Access each option through the application's main menu.",
+    "categories": ["tools", "data-visualizations"]
   },
   {
     "id": 9,
     "title": "Coastal Change Analysis Program (C-CAP) land Cover Atlas",
-    "url": "https://coast.noaa.gov/ccapatlas/"
+    "url": "https://coast.noaa.gov/ccapatlas/",
+    "description": "",
+    "categories": ["tools", "data-visualizations"]
   },
   {
     "id": 10,
     "title": "Coastal Flood Exposure Mapper",
-    "url": "https://coast.noaa.gov/floodexposure/#/splash"
+    "url": "https://coast.noaa.gov/floodexposure/#/splash",
+    "description": "The purpose of this mapping application is to provide a preliminary look at exposure to common types of coastal flooding. The viewer is a screening-level tool that uses nationally consistent data sets and analyses and should be used as such.",
+    "categories": ["tools", "data-visualizations"]
   },
   {
     "id": 11,
     "title": "Coastal Resilience Index: A community Self-Assessment",
-    "url": "http://masgc.org/assets/uploads/publications/662/coastal_community_resilience_index.pdf"
+    "url": "http://masgc.org/assets/uploads/publications/662/coastal_community_resilience_index.pdf",
+    "description": "The purpose of this self-assessment is to provide community leaders with a simple and inexpensivemethod of predicting if their community will reachand maintain an acceptable level of functioningafter a disaster. Experienced local planners,engineers, floodplain managers or administratorscan complete this self-assessment using existingsources of information from their community.The goal is for every community to become highlyresilient. The assessment may identify problemsyour community should address before the nextdisaster and where resources should be allocated.",
+    "categories": ["community-resources"]
   },
   {
     "id": 12,
     "title": "Coastal Vulnerability Index (CVI)",
-    "url": "https://woodshole.er.usgs.gov/project-pages/cvi/"
+    "url": "https://woodshole.er.usgs.gov/project-pages/cvi/",
+    "description": "This project, within the USGS Coastal and Marine Geology Program's National Assessment, seeks to objectively determine the relative risks due to future Sea Level rise for the U.S. Atlantic, Pacific, and Gulf of Mexico coasts.",
+    "categories": ["data-visualization", "tools"]
   },
   {
     "id": 13,
     "title": "Disaster Resilience Indicators for Benchmarking Baseline Conditions",
-    "url": "http://resiliencesystem.com/sites/default/files/Cutter_jhsem.2010.7.1.1732.pdf"
+    "url": "http://resiliencesystem.com/sites/default/files/Cutter_jhsem.2010.7.1.1732.pdf",
+    "description": "There is considerable federal interest in disaster resilience as a mechanism for mitigating theimpacts to local communities, yet the identification of metrics and standards for measuringresilience remain a challenge. This paper provides a methodology and a set of indicators formeasuring baseline characteristics of communities that foster resilience. By establishing baselineconditions, it becomes possible to monitor changes in resilience over time in particular places andto compare one place to another. We apply our methodology to counties within the SoutheasternUnited States as a proof of concept. The results show that spatial variations in disaster resilienceexist and are especially evident in the rural/urban divide, where metropolitan areas have higherlevels of resilience than rural counties. However, the individual drivers of the disaster resilience(or lack thereof)—social, economic, institutional, infrastructure, and community capacities—varywidely.",
+    "categories": ["community-resources"]
   },
   {
     "id": 14,
     "title": "Getting to Resilience: A ommunity Planning Evaluation Tool",
-    "url": "http://www.prepareyourcommunitynj.org/"
+    "url": "http://www.prepareyourcommunitynj.org/",
+    "description": "This online self assessment process is a tool to assist communities to reduce vulnerability and increase preparedness by linking planning, mitigation, and adaptation. Through this assessment you will find out how your preparedness can be worth valuable points through FEMA’s Community Rating System and Sustainable Jersey.",
+    "categories": ["tools"]
   },
   {
     "id": 15,
     "title": "Hazard Vulnerability Assessment (HVA) Tool",
-    "url": "https://www.scdhec.gov/HomeAndEnvironment/Docs/HVA_Tool_Info%20(GSAA)%20(1).pdf"
+    "url": "https://www.scdhec.gov/HomeAndEnvironment/Docs/HVA_Tool_Info%20(GSAA)%20(1).pdf",
+    "description": "The South Carolina Department of Health and Environment Control (SCDHEC) - Ocean and CoastalResource Management (OCRM) Office is presenting a new coastal hazard assessment tool called the HazardVulnerability Assessment (HVA).The goal of the HVA is to provide a geospatial tool that can be used by federal, state, and localcoastal managers and scientists to improve comprehensive and hazard mitigation planning, post-disasterredevelopment, as well as determine areas best suited for restoration and mitigation.",
+    "categories": ["tools", "community-resources"]
   },
   {
     "id": 16,
     "title": "Historical Hurricane Tracks Tool",
-    "url": "https://coast.noaa.gov/hurricanes/"
+    "url": "https://coast.noaa.gov/hurricanes/",
+    "description": "https://coast.noaa.gov/hurricanes/",
+    "categories": ["tools", "data-visualizations"]
   },
   {
     "id": 17,
     "title": "NIST Community Resilience Planning Guide",
-    "url": "https://www.nist.gov/topics/community-resilience/community-resilience-planning-guide"
+    "url": "https://www.nist.gov/topics/community-resilience/community-resilience-planning-guide",
+    "description": "The NIST Community Resilience Planning Guide for Buildings and Infrastructure Systems (Guide) provides a practical and flexible approach to help all communities improve their resilience by setting priorities and allocating resources to manage risks for their prevailing hazards. Volume I of the Guide describes the six step planning process and provides a worked example to illustrate the process. Volume II is a resource that describes how to characterize the social and economic dimensions of the community, dependencies and cascading consequences, and building and infrastructure performance. Using the Guide can help communities to integrate consistent resilience goals into their comprehensive, economic development, zoning, mitigation, and other local planning activities that impact buildings, public utilities, and other infrastructure systems.",
+    "categories": ["community-resources"]
   },
   {
     "id": 18,
     "title": "Risk Mapping, Assessment, and Planning Program (Risk MAP)",
-    "url": "https://www.fema.gov/risk-mapping-assessment-and-planning-risk-map"
+    "url": "https://www.fema.gov/risk-mapping-assessment-and-planning-risk-map",
+    "description": "This page discusses the Risk MAP program and what the program can mean to communities. This page is intended for a variety of audiences, including state and community officials; homeowners, renters and business owners; real estate, lending, insurance professionals; engineers, surveyors and architects.",
+    "categories": ["community-resources"]
   },
   {
     "id": 19,
     "title": "Rural Disaster Resilience Planning",
-    "url": "https://rdrp.jibc.ca/"
+    "url": "https://rdrp.jibc.ca/",
+    "description": "A user-friendly guide to help you work through the various steps to increase resiliency in your community.",
+    "categories": ["community-resources", "tools"]
   },
   {
     "id": 20,
     "title": "Sea Level Rise and Coastal Flood Web Tools Comparison Matrix",
-    "url": "http://sealevel.climatecentral.org/matrix/"
+    "url": "http://sealevel.climatecentral.org/matrix/",
+    "description": "This matrix was created to provide the planning and coastal management communities with an expandable chart to compare the functions and methods of publicly available sea level rise and coastal flood web tools. The information in each column is provided by the web tool owner. Specific questions about the tools can be addressed to the tool owner through the contact information provided in their matrix column. Select a state in the drop-down menu below to get started.",
+    "categories": ["data-visualizations", "tools"]
   },
   {
     "id": 21,
     "title": "Sea Level Rise Viewer",
-    "url": "https://coast.noaa.gov/slr/#/layer/slr/0/-8748160.559467208/3988745.1513586217/10/satellite/none/0.8/2075/interHigh/midAccretion"
+    "url": "https://coast.noaa.gov/slr/#/layer/slr/0/-8748160.559467208/3988745.1513586217/10/satellite/none/0.8/2075/interHigh/midAccretion",
+    "description": "",
+    "categories": ["data-visualizations", "tools"]
   },
   {
     "id": 22,
     "title": "Sea Level Trends",
-    "url": "https://tidesandcurrents.noaa.gov/sltrends/sltrends.html"
+    "url": "https://tidesandcurrents.noaa.gov/sltrends/sltrends.html",
+    "description": "The Center for Operational Oceanographic Products and Services has been measuring sea level for over 150 years, with tide stations of the National Water Level Observation Network operating on all U.S. coasts. Changes in RSL, either a rise or fall, have been computed at 142 long-term water level stations using a minimum span of 30 years of observations at each location. These measurements have been averaged by month which removes the effect of higher frequency phenomena in order to compute an accurate linear sea level trend. The trend analysis has also been extended to 240 global tide stations using data from the Permanent Service for Mean Sea Level (PSMSL). This work is funded in partnership with the NOAA OAR Climate Observation Division.",
+    "categories": ["data-visualizations", "tools"]
   },
   {
     "id": 23,
     "title": "Social Vulnerability Index: SoVI",
-    "url": "https://artsandsciences.sc.edu/geog/hvri/sovi%C2%AE-0"
+    "url": "https://artsandsciences.sc.edu/geog/hvri/sovi%C2%AE-0",
+    "description": "The Social Vulnerability Index (SoVI®) 2010-14 measures the social vulnerability of U.S. counties to environmental hazards. The index is a comparative metric that facilitates the examination of the differences in social vulnerability among counties. SoVI® is a valuable tool for policy makers and practitioners because it graphically illustrates the geographic variation in social vulnerability. It shows where there is uneven capacity for preparedness and response and where resources might be used most effectively to reduce the pre-existing vulnerability. SoVI® also is useful as an indicator in determining the differential recovery from disasters using empirically-based information.",
+    "categories": ["data-visualizations", "tools"]
+  },
+  {
+    "title": "SC DHEC GIS Online with GIS Data Services and Interactive Maps",
+    "url": "http://www.scdhec.gov/HomeAndEnvironment/maps/GIS/",
+    "description": "As the state agency responsible for protecting public health and the environment, SCDHEC requires timely, efficient and effective access to information about the state's health, land, water, air and coastal resources. The GIS program mission is to provide core geospatial technology infrastructure, tools and services to support SCDHEC program operations, policy evaluation, and decision-making.",
+    "categories": ["community-resources", "tools"]
+  },
+  {
+    "title": "SC DHEC Hazard Vulnerability Assessment Tool (HVA) and MyCoast: South Carolina App",
+    "url": "http://www.scdhec.gov/HomeAndEnvironment/Water/CoastalManagement/CoastalZoneManagement",
+    "description": "A resource with links to numerous other resources aimed at answering questions regarding coastal zone planning, hazards, and management.",
+    "categories": ["community-resources"]
+  },
+  {
+    "title": "City of Charleston GIS: Maps and Applications",
+    "url": "https://gis.charleston-sc.gov/",
+    "description": "Links to GIS resources associated with Charleston, SC. A geographic information system (GIS) is a framework for gathering, managing, and analyzing data. Rooted in the science of geography, GIS integrates many types of data. It analyzes spatial location and organizes layers of information into visualizations using maps and 3D scenes. ​With this unique capability, GIS reveals deeper insights into data, such as patterns, relationships, and situations—helping users make smarter decisions. ",
+    "categories": ["community-resources", "tools", "data-visualizations"]
+  },
+  {
+    "title": "South Carolina Flooding: American Red Cross",
+    "url": "https://www.redcross.org/local/south-carolina/about-us/our-work/flooding.html",
+    "description": "",
+    "categories": ["community-resources", "data-visualizations"]
+  },
+  {
+    "title": "SC.gov/Health & Safety/Emergencies and Disasters",
+    "url": "https://sc.gov/HealthAndSafety/Pages/EmergenciesAndDisasters.aspx",
+    "description": "",
+    "categories": ["community-resources"]
+  },
+  {
+    "title": "S.C. Emergency Management Division's and website",
+    "url": "https://www.scemd.org/news/sc-s-new-personal-emergency-app-new-scemd-website/",
+    "description": "Residents in South Carolina now have a new mobile tool to help them be personally prepared for large-scale emergencies, such as hurricanes. The S.C. Emergency Management Division recently unveiled the SC Emergency Manager, a smartphone app designed for users to build their own emergency plans, to keep track of supplies and to stay connected to loved ones. In addition, coastal residents can now 'Know Your Zone' instantly using the maps feature as well as locate the nearest emergency shelters when they are open. The tools section features a flashlight, locator whistle and the ability to report damage to emergency officials.",
+    "categories": ["community-resources"]
   }
 ]

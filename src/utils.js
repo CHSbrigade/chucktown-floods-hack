@@ -1,13 +1,20 @@
 import { default as data } from './coastal-tools.json'
+import algoliasearch from 'algoliasearch'
 
-const mockSearchResult = () => data.sort(() => .5 - Math.random())
-
-export const performSearch = ({
-  handleStart,
-  handleResult,
-  handleError
-}, simulateError = false) => searchTerm => {
+export const performSearch = (
+  { handleStart, handleResult, handleError },
+  simulateError = false
+) => searchTerm => {
   handleStart && handleStart()
+
+  var client = algoliasearch('62T98J3F05', 'a25dce6b2ca36b908fabd00d96feb813')
+  var index = client.initIndex('data_1')
+
+  // firstname
+  index.search(searchTerm, function(err, content) {
+    console.log('content', content)
+    handleResult(content.hits)
+  })
 
   setTimeout(() => {
     if (simulateError) {
@@ -15,9 +22,5 @@ export const performSearch = ({
       handleError && handleError(err)
       return
     }
-
-    console.log('yay', )
-
-    handleResult(mockSearchResult())
   }, 1200)
 }

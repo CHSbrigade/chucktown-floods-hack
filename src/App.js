@@ -27,6 +27,7 @@ import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
 import Grid from '@material-ui/core/Grid'
 import ResourceDetail from './components/ResourceDetail'
 import { withRouter } from 'react-router'
+import algoliasearch from 'algoliasearch'
 
 const styles = theme => ({
   root: {
@@ -71,7 +72,12 @@ const SearchComp = props => {
       <div className={props.classes.rootSearch}>
         <AppBar
           position="static"
-          style={{ backgroundColor: 'white', zIndex: '5' }}
+          style={{
+            backgroundColor: 'white',
+            zIndex: '5',
+            boxShadow: 'none',
+            borderBottom: '1px solid lightgray'
+          }}
         >
           <Toolbar>
             <IconButton
@@ -89,8 +95,8 @@ const SearchComp = props => {
                   <FormControl fullWidth className={props.classes.margin}>
                     <Input
                       id="adornment-amount"
-                      value={'wow'}
-                      onChange={() => {}}
+                      value={props.searchText}
+                      onChange={props.handleSearchChange}
                       disableUnderline={true}
                       startAdornment={
                         <InputAdornment position="start">
@@ -102,7 +108,6 @@ const SearchComp = props => {
                 </form>
               </Paper>
             </div>
-            {/* <Button color="inherit">Login</Button> */}
           </Toolbar>
         </AppBar>
         <div className={props.classes.rootGrid}>
@@ -152,6 +157,7 @@ const SearchComp = props => {
     </div>
   )
 }
+
 const Home = props => (
   <div>
     {props.searchFetching ? (
@@ -160,7 +166,7 @@ const Home = props => (
       <div
         className="vh-100 dt w-100 tc bg-dark-gray white cover"
         style={{ background: `url(${bg}) no-repeat center` }}
-        >
+      >
         <div className="dtc v-mid">
           <header className="white-70" />
           <div className="w-50 center">
@@ -175,13 +181,13 @@ const Home = props => (
                 <FormControl fullWidth className={props.classes.margin}>
                   <Input
                     id="adornment-amount"
-                    value={'wow'}
-                    onChange={() => {}}
-                    startAdornment={(
+                    value={props.searchText}
+                    onChange={props.handleSearchChange}
+                    startAdornment={
                       <InputAdornment position="start">
                         <Search />
                       </InputAdornment>
-                    )}
+                    }
                   />
                 </FormControl>
               </form>
@@ -198,12 +204,26 @@ class App extends Component {
     super(props)
     this.state = {
       searchResults: [],
-      searchFetching: false
+      searchFetching: false,
+      searchText: ''
     }
+  }
+
+  handleSearchChange = e => {
+    this.setState({ searchText: e.target.value })
   }
 
   handleSearchRequest = e => {
     e.preventDefault()
+
+    // var client = algoliasearch('62T98J3F05', 'a25dce6b2ca36b908fabd00d96feb813')
+    // var index = client.initIndex('data_1')
+
+    // // firstname
+    // index.search(this.state.searchText, function(err, content) {
+    //   console.log('content', content)
+    //   this.setState({})
+    // })
 
     const handlers = {
       handleStart: () => this.setState({ searchFetching: true }),
@@ -212,10 +232,11 @@ class App extends Component {
       },
       handleError: err => console.log('err!', err)
     }
-    performSearch(handlers)('test')
+    performSearch(handlers)(this.state.searchText)
   }
 
   render() {
+    console.log('state', this.state)
     return (
       <div className="App">
         <BrowserRouter>
@@ -223,22 +244,26 @@ class App extends Component {
             <Route
               exact
               path="/"
-              component={() => (
+              render={() => (
                 <Home
                   handleSearchRequest={this.handleSearchRequest}
                   classes={this.props.classes}
                   searchFetching={this.state.searchFetching}
+                  searchText={this.state.searchText}
+                  handleSearchChange={this.handleSearchChange}
                 />
               )}
             />
             <Route
               exact
               path="/search"
-              component={() => (
+              render={() => (
                 <SearchComp
                   searchResults={this.state.searchResults}
                   searchFetching={this.state.searchFetching}
                   classes={this.props.classes}
+                  searchText={this.state.searchText}
+                  handleSearchChange={this.handleSearchChange}
                 />
               )}
             />
