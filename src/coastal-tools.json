@@ -1,93 +1,116 @@
 [
   {
+    "id": 1,
     "title": "A Guide to Assessing Green Infrasturcture Costs and Benefits for Flood Reduction",
     "url": " https://coast.noaa.gov/data/digitalcoast/pdf/gi-cost-benefit.pdf"
   },
   {
+    "id": 2,
     "title": "American Red Cross Ready Rating",
     "url": "https://www.readyrating.org/Resource-Center/Emergency-Planning/hazard-and-vulnerabilityassessment?utm_source=AnonOnPageLink&utm_medium=Link&utm_term=AnonUser&utm_content=ResourceLinks&utm_campaign=AnonOnPageLink"
   },
   {
+    "id": 3,
     "title": "Building Resilience Against Climate Effects (BRACE)",
     "url": "https://www.cdc.gov/climateandhealth/BRACE.htm"
   },
   {
+    "id": 4,
     "title": "Building Resilient States: A Framework for Agencies",
     "url": "https://smartgrowthamerica.org/resources/building-resilient-states-a-framework-for-agencies/?download=yes&key=43746757"
   },
   {
+    "id": 5,
     "title": "Climate Central Surging Seas",
     "url": "http://sealevel.climatecentral.org/"
   },
   {
+    "id": 6,
     "title": "Climate Change & Extreme Weather Vulnerability Assessment Framework",
     "url": "https://www.fhwa.dot.gov/environment/sustainability/resilience/publications/vulnerability_assessmen"
   },
   {
+    "id": 7,
     "title": "Climate Change Vulnerability Assessment Tool for Coastal Habitats (CCVATCH)",
     "url": "http://sealevel.climatecentral.org/"
   },
   {
+    "id": 8,
     "title": "Climate Explorer",
     "url": "https://toolkit.climate.gov/tools/climate-explorer"
   },
   {
+    "id": 9,
     "title": "Coastal Change Analysis Program (C-CAP) land Cover Atlas",
     "url": "https://coast.noaa.gov/ccapatlas/"
   },
   {
+    "id": 10,
     "title": "Coastal Flood Exposure Mapper",
     "url": "https://coast.noaa.gov/floodexposure/#/splash"
   },
   {
+    "id": 11,
     "title": "Coastal Resilience Index: A community Self-Assessment",
     "url": "http://masgc.org/assets/uploads/publications/662/coastal_community_resilience_index.pdf"
   },
   {
+    "id": 12,
     "title": "Coastal Vulnerability Index (CVI)",
     "url": "https://woodshole.er.usgs.gov/project-pages/cvi/"
   },
   {
+    "id": 13,
     "title": "Disaster Resilience Indicators for Benchmarking Baseline Conditions",
     "url": "http://resiliencesystem.com/sites/default/files/Cutter_jhsem.2010.7.1.1732.pdf"
   },
   {
+    "id": 14,
     "title": "Getting to Resilience: A ommunity Planning Evaluation Tool",
     "url": "http://www.prepareyourcommunitynj.org/"
   },
   {
+    "id": 15,
     "title": "Hazard Vulnerability Assessment (HVA) Tool",
     "url": "https://www.scdhec.gov/HomeAndEnvironment/Docs/HVA_Tool_Info%20(GSAA)%20(1).pdf"
   },
   {
+    "id": 16,
     "title": "Historical Hurricane Tracks Tool",
     "url": "https://coast.noaa.gov/hurricanes/"
   },
   {
+    "id": 17,
     "title": "NIST Community Resilience Planning Guide",
     "url": "https://www.nist.gov/topics/community-resilience/community-resilience-planning-guide"
   },
   {
+    "id": 18,
     "title": "Risk Mapping, Assessment, and Planning Program (Risk MAP)",
     "url": "https://www.fema.gov/risk-mapping-assessment-and-planning-risk-map"
   },
   {
+    "id": 19,
     "title": "Rural Disaster Resilience Planning",
     "url": "https://rdrp.jibc.ca/"
   },
   {
+    "id": 20,
     "title": "Sea Level Rise and Coastal Flood Web Tools Comparison Matrix",
     "url": "http://sealevel.climatecentral.org/matrix/"
   },
   {
+    "id": 21,
     "title": "Sea Level Rise Viewer",
     "url": "https://coast.noaa.gov/slr/#/layer/slr/0/-8748160.559467208/3988745.1513586217/10/satellite/none/0.8/2075/interHigh/midAccretion"
   },
   {
+    "id": 22,
     "title": "Sea Level Trends",
     "url": "https://tidesandcurrents.noaa.gov/sltrends/sltrends.html"
   },
   {
+    "id": 23,
     "title": "Social Vulnerability Index: SoVI",
     "url": "https://artsandsciences.sc.edu/geog/hvri/sovi%C2%AE-0"
   }

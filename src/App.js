@@ -8,6 +8,7 @@ import { performSearch } from './utils'
 
 import Map from './components/Map'
 import ResultCard from './components/ResultCard'
+import ResourceDetail from './components/ResourceDetail'
 
 const Home = props => {
   console.log('props', props)
@@ -61,6 +62,7 @@ class App extends Component {
               )}
             />
             <Route exact path="/map" component={Map} />
+            <Route path="/resource/:id" component={ResourceDetail} />
           </Switch>
         </BrowserRouter>
       </div>
