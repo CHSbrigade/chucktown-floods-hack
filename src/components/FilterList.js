@@ -8,52 +8,76 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel
+  InputLabel,
+  Input
 } from '../../node_modules/@material-ui/core'
 import { map } from 'ramda'
 import baseUrls from '../base-url.json'
 
 export default class extends React.Component {
   render() {
+    const {
+      toggleFilter,
+      state,
+      handleSelectCost,
+      handleSelectSource
+    } = this.props
     return (
       <React.Fragment>
         <List>
           <ListItem>
             <ListItemIcon>
-              <Checkbox value="Tools" />
+              <Checkbox
+                onChange={toggleFilter('toolsFilter')}
+                checked={state.toolsFilter}
+              />
             </ListItemIcon>
             <ListItemText primary="Tools" />
           </ListItem>
           <ListItem>
             <ListItemIcon>
-              <Checkbox value="Data Visulatization" />
+              <Checkbox
+                onChange={toggleFilter('dataVisualizationsFilter')}
+                checked={state.dataVisualizationsFilter}
+              />
             </ListItemIcon>
             <ListItemText primary="Data Visualizations" />
           </ListItem>
           <ListItem>
             <ListItemIcon>
-              <Checkbox value="Community Resources" />
+              <Checkbox
+                onChange={toggleFilter('communityResourcesFilter')}
+                checked={state.communityResourcesFilter}
+              />
             </ListItemIcon>
             <ListItemText primary="Community Resources" />
           </ListItem>
           <ListItem>
             <ListItemIcon>
-              <Checkbox value="Insurance" />
+              <Checkbox
+                onChange={toggleFilter('insuranceFilter')}
+                checked={state.insuranceFilter}
+              />
             </ListItemIcon>
             <ListItemText primary="Insurance" />
           </ListItem>
         </List>
         <FormControl>
           <InputLabel>Cost</InputLabel>
-          <Select value={null} onChange={() => {}}>
-            <MenuItem value={1}>Free</MenuItem>
-            <MenuItem value={2}>Paid</MenuItem>
+          <Select value={state.cost} onChange={handleSelectCost}>
+            <MenuItem value="free">Free</MenuItem>
+            <MenuItem value="paid">Paid</MenuItem>
           </Select>
         </FormControl>
         <br />
         <FormControl>
-          <InputLabel>Source</InputLabel>
-          <Select onChange={() => {}}>
+          <InputLabel htmlFor="select-multiple">Source</InputLabel>
+          <Select
+            multiple
+            onChange={handleSelectSource}
+            value={state.sources}
+            input={<Input id="select-multiple" />}
+          >
             {map(
               url => (
                 <MenuItem value={url}>{url}</MenuItem>
