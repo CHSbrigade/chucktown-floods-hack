@@ -57,6 +57,7 @@ import FilterListComp from './components/FilterList'
 import { withRouter } from 'react-router'
 import algoliasearch from 'algoliasearch'
 import ContainerDimensions from 'react-container-dimensions'
+import Tides from './components/FooTides'
 
 const styles = theme => ({
   root: {
@@ -404,6 +405,7 @@ class App extends Component {
               )}
             />
             <Route exact path="/map" component={MapContainer} />
+            <Route exact path="/tides" component={Tides} />
             <Route path="/resource/:id" component={ResourceDetail} />
           </Switch>
         </BrowserRouter>
