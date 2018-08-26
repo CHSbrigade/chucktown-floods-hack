@@ -135,7 +135,7 @@ class ResultCard extends React.Component {
             }, tail(this.props.images))}
           </div>
         </Collapse>
-        {this.props.pdf && (
+        {/* {this.props.pdf && (
           <a
             style={{ textDecoration: 'none' }}
             href={this.props.url}
@@ -145,7 +145,7 @@ class ResultCard extends React.Component {
               DOWNLOAD
             </Button>
           </a>
-        )}
+        )} */}
         <CardActions className={classes.actions} disableActionSpacing>
           <Typography component="p">
             {map(x => {
