@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router'
 import { BrowserRouter, Link } from 'react-router-dom'
+import Hidden from '@material-ui/core/Hidden'
 import Button from '@material-ui/core/Button'
 import coastToolsData from './coastal-tools.json'
 import baseUrls from './base-url.json'
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from 'react-places-autocomplete'
 import {
   map,
   nth,
@@ -50,7 +55,9 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
 import FilterList from '@material-ui/icons/FilterList'
+import Place from '@material-ui/icons/Place'
 import Close from '@material-ui/icons/Close'
+
 import Grid from '@material-ui/core/Grid'
 import ResourceDetail from './components/ResourceDetail'
 import FilterListComp from './components/FilterList'
@@ -126,10 +133,10 @@ const SearchComp = props => {
       <AppBar
         position="static"
         style={{
-          backgroundColor: 'white',
+          backgroundColor: 'rgb(245, 245, 245)',
           zIndex: '5',
-          boxShadow: 'none',
-          borderBottom: '1px solid lightgray'
+          boxShadow: 'none'
+          // borderBottom: '1px solid lightgray'
         }}
       >
         <Toolbar>
@@ -145,7 +152,7 @@ const SearchComp = props => {
           <div>
             <Paper
               className={props.classes.inputAppBar}
-              style={{ position: 'relative', top: '2px' }}
+              style={{ position: 'relative', top: '2px', padding: '.5em' }}
               elevation={1}
             >
               <form onSubmit={props.handleSearchRequest}>
@@ -165,6 +172,16 @@ const SearchComp = props => {
               </form>
             </Paper>
           </div>
+          <Hidden smDown>
+            <Link to="/map">
+              <Button
+                color="black"
+                style={{ position: 'absolute', top: 14, right: 60 }}
+              >
+                <Place />
+              </Button>
+            </Link>
+          </Hidden>
           <Button
             color="black"
             style={{ position: 'absolute', top: 14, right: 10 }}
@@ -177,6 +194,7 @@ const SearchComp = props => {
 
       <Drawer
         anchor="right"
+        onClose={props.toggleDrawer}
         open={props.drawerOpen}
         classes={{
           paper: props.classes.drawerPaper
@@ -239,21 +257,62 @@ const Home = props => {
           className="vh-100 dt w-100 tc bg-dark-gray white cover"
           style={{ background: `url(${bg}) no-repeat center` }}
         >
+          <Link to="/map">
+            <Button
+              style={{
+                position: 'absolute',
+                top: '2em',
+                right: '2em',
+                color: 'white'
+              }}
+            >
+              <Place /> Map
+            </Button>
+          </Link>
+          <div
+            style={{
+              position: 'absolute',
+              top: '1em',
+              left: '2em',
+              color: 'white',
+              height: 50,
+              width: 50
+            }}
+          >
+            <img src="https://file-tojimaepbm.now.sh/" />
+          </div>
           <div className="dtc v-mid">
             <header className="white-70" />
             <div className="w-50 center">
-              <h2 className="f3 fw1 i white">
-                Search For Flooding Related Material in The Greater Charleston
-                Area
-              </h2>
+              <Typography
+                variant="headline"
+                style={{
+                  color: 'white',
+                  textAlign: 'left'
+                }}
+              >
+                Search for flooding related
+              </Typography>
+              <Typography
+                variant="headline"
+                style={{
+                  color: 'white',
+                  textAlign: 'left',
+                  marginBottom: '1em'
+                }}
+              >
+                material in the Greater Charleston area.
+              </Typography>
             </div>
             <div>
-              <Paper className={props.classes.root} elevation={1}>
+              <Paper className={props.classes.root} elevation={6}>
                 <form onSubmit={props.handleSearchRequest}>
                   <FormControl fullWidth className={props.classes.margin}>
                     <Input
                       id="adornment-amount"
                       value={props.searchText}
+                      placeholder={`Try "Flood Map"`}
+                      disableUnderline
                       onChange={props.handleSearchChange}
                       startAdornment={
                         <InputAdornment position="start">
@@ -286,7 +345,8 @@ class App extends Component {
       sources: [],
       cost: '',
       categoriesToShow: [],
-      drawerOpen: false
+      drawerOpen: false,
+      address: ''
     }
   }
 
@@ -294,6 +354,31 @@ class App extends Component {
     const updatedValue = not(prop('drawerOpen', this.state))
     const updatedState = assoc('drawerOpen', updatedValue, this.state)
     this.setState(updatedState)
+  }
+
+  handleAddressChange = address => {
+    this.setState({ address })
+  }
+  handleAddressSelect = address => {
+    geocodeByAddress(address)
+      .then(results => {
+        console.log('results', results)
+        return {
+          latLng: getLatLng(results[0]),
+          address: results[0].formatted_address
+        }
+      })
+      .then(res => {
+        const { latLng, address } = res
+        latLng.then(x => {
+          this.setState({
+            lat: x.lat,
+            lng: x.lng,
+            address
+          })
+        })
+      })
+      .catch(error => console.error('Error', error))
   }
 
   componentDidMount = () => {
@@ -404,7 +489,21 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/map" component={MapContainer} />
+            <Route
+              exact
+              path="/map"
+              render={() => {
+                return (
+                  <MapContainer
+                    handleAddressChange={this.handleAddressChange}
+                    handleAddressSelect={this.handleAddressSelect}
+                    address={this.state.address}
+                    lat={this.state.lat}
+                    lng={this.state.lng}
+                  />
+                )
+              }}
+            />
             <Route exact path="/tides" component={Tides} />
             <Route path="/resource/:id" component={ResourceDetail} />
           </Switch>
