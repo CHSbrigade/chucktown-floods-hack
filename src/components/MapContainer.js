@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import ContainerDimensions from 'react-container-dimensions'
 import Map from './Map'
 import MapSearch from './MapSearch'
+import MapSlider from './MapSlider'
 
 import FloodLayers from '../data/flood-layers.json'
 
@@ -54,6 +55,9 @@ export default class extends React.Component {
                 onViewportChange={this.updateViewport}
                 extraLayers={this.state.extraLayers}
               />
+              <div className="absolute bottom-1 pa1">
+                <MapSlider />
+              </div>
             </Fragment>
           )}
         </ContainerDimensions>
