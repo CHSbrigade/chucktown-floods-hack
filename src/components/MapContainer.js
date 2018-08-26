@@ -3,6 +3,8 @@ import ContainerDimensions from 'react-container-dimensions'
 import Map from './Map'
 import MapSearch from './MapSearch'
 
+import FloodLayers from '../data/flood-layers.json'
+
 export default class extends React.Component {
   constructor (props) {
     super(props)
@@ -15,6 +17,7 @@ export default class extends React.Component {
         q: ''
       },
       zoom: props.zoom || 16.5,
+      extraLayers: [FloodLayers[0]],
     }
 
     this.submit = this.submit.bind(this)
@@ -43,6 +46,7 @@ export default class extends React.Component {
                 height={height}
                 width={width}
                 onViewportChange={this.updateViewport}
+                extraLayers={this.state.extraLayers}
               />
             </Fragment>
           )}

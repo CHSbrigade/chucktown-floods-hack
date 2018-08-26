@@ -1,0 +1,52 @@
+[
+  {
+    "id": "flood 1",
+    "type": "fill",
+    "source": "composite",
+    "source-layer": "landcover",
+    "layout": {
+      "visibility": "visible"
+    },
+    "paint": {
+      "fill-opacity": 0.16,
+      "fill-color": "hsl(238, 90%, 47%)",
+      "fill-translate": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "id": "flood 2",
+    "type": "fill-extrusion",
+    "source": "composite",
+    "source-layer": "landcover",
+    "layout": {
+      "visibility": "visible"
+    },
+    "paint": {
+      "fill-extrusion-color": "hsl(233, 78%, 67%)",
+      "fill-extrusion-height": 2
+    }
+  },
+  {
+    "id": "flood 3",
+    "type": "fill",
+    "source": "composite",
+    "source-layer": "landcover",
+    "layout": {
+      "visibility": "visible"
+    },
+    "paint": {
+      "fill-opacity": 0.5,
+      "fill-color": "hsla(238, 87%, 40%, 0.53)",
+      "fill-translate": [
+        "literal",
+        [
+          0,
+          0
+        ]
+      ]
+    }
+  }
+]
