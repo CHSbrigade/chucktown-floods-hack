@@ -3,17 +3,21 @@ import ContainerDimensions from 'react-container-dimensions'
 import Map from './Map'
 import MapSearch from './MapSearch'
 
+import FloodLayers from '../data/flood-layers.json'
+
 export default class extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      latitude: props.latitude || 32.7765,
-      longitude: props.longitude || -79.9311,
+      latitude: props.latitude || 32.772276,
+      longitude: props.longitude || -79.931310,
+      pitch: 45,
       search: {
         q: ''
       },
-      zoom: props.zoom || 13,
+      zoom: props.zoom || 16.5,
+      extraLayers: [FloodLayers[0]],
     }
 
     this.submit = this.submit.bind(this)
@@ -35,12 +39,14 @@ export default class extends React.Component {
                 />
               </div>
               <Map
-                latitude={this.state.latitude}w
+                latitude={this.state.latitude}
                 longitude={this.state.longitude}
+                pitch={this.state.pitch}
                 zoom={this.state.zoom}
                 height={height}
                 width={width}
                 onViewportChange={this.updateViewport}
+                extraLayers={this.state.extraLayers}
               />
             </Fragment>
           )}
