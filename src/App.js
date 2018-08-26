@@ -4,7 +4,24 @@ import { BrowserRouter, Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import coastToolsData from './coastal-tools.json'
 import baseUrls from './base-url.json'
-import { map, assoc, not, prop } from 'ramda'
+import {
+  map,
+  nth,
+  intersection,
+  contains,
+  isEmpty,
+  length,
+  assoc,
+  not,
+  reject,
+  prop,
+  pick,
+  toPairs,
+  filter,
+  objOf,
+  merge,
+  head
+} from 'ramda'
 import { performSearch } from './utils'
 import bg from './assets/bg.png'
 import { withStyles } from '@material-ui/core/styles'
@@ -22,6 +39,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
+import Drawer from '@material-ui/core/Drawer'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -31,10 +49,14 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
+import FilterList from '@material-ui/icons/FilterList'
+import Close from '@material-ui/icons/Close'
 import Grid from '@material-ui/core/Grid'
 import ResourceDetail from './components/ResourceDetail'
-import FilterList from './components/FilterList'
+import FilterListComp from './components/FilterList'
 import { withRouter } from 'react-router'
+import algoliasearch from 'algoliasearch'
+import ContainerDimensions from 'react-container-dimensions'
 import Tides from './components/FooTides'
 
 const styles = theme => ({
@@ -54,9 +76,9 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2,
     color: 'black'
   },
-  rootSearch: {
-    flexGrow: 1
-  },
+  // rootSearch: {
+  //   flexGrow: 1
+  // },
   rootGrid: {
     flexGrow: 1
   },
@@ -71,99 +93,139 @@ const styles = theme => ({
   menuButton: {
     marginLeft: -12,
     marginRight: 20
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default
   }
 })
 
 const SearchComp = props => {
+  const {
+    state: { categoriesToShow }
+  } = props
+
+  const show = props => {
+    const matchesCategory =
+      length(intersection(props.categories, categoriesToShow)) > 0
+
+    const checks = [matchesCategory]
+    return !contains(false, checks)
+  }
+
+  const resourcesToShow = filter(show, props.searchResults)
+
+  const showCard = props => (
+    <div className="mb2">
+      <ResultCard {...props} />
+    </div>
+  )
+
   return (
-    <div>
-      <div className={props.classes.rootSearch}>
-        <AppBar
-          position="static"
-          style={{ backgroundColor: 'white', zIndex: '5' }}
-        >
-          <Toolbar>
-            <IconButton
-              className={props.classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <Link to="/">
-                <KeyboardBackspace style={{ color: 'black' }} />
-              </Link>
-            </IconButton>
-            <div>
-              <Paper className={props.classes.inputAppBar} elevation={1}>
-                <form onSubmit={props.handleSearchRequest}>
-                  <FormControl fullWidth className={props.classes.margin}>
-                    <Input
-                      id="adornment-amount"
-                      value={'wow'}
-                      onChange={() => {}}
-                      disableUnderline={true}
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <Search />
-                        </InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                </form>
-              </Paper>
-            </div>
-            {/* <Button color="inherit">Login</Button> */}
-          </Toolbar>
-        </AppBar>
-        <div className={props.classes.rootGrid}>
-          <Grid
-            container
-            spacing={24}
-            style={{
-              position: 'relative',
-              top: '12px'
-              // zIndex: -1
-            }}
+    <div className={props.classes.rootSearch}>
+      <AppBar
+        position="static"
+        style={{
+          backgroundColor: 'white',
+          zIndex: '5',
+          boxShadow: 'none',
+          borderBottom: '1px solid lightgray'
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            className={props.classes.menuButton}
+            color="inherit"
+            aria-label="Menu"
           >
-            <Grid
-              xs={9}
-              style={{
-                backgroundColor: '#f5f5f5'
-              }}
-              className="vh-100 dt w-100 tc cover"
+            <Link to="/">
+              <KeyboardBackspace style={{ color: 'black' }} />
+            </Link>
+          </IconButton>
+          <div>
+            <Paper
+              className={props.classes.inputAppBar}
+              style={{ position: 'relative', top: '2px' }}
+              elevation={1}
             >
-              <div className="mt3">
-                {props.searchFetching ? (
-                  <CircularProgress
-                    className={props.classes.progress}
-                    size={50}
+              <form onSubmit={props.handleSearchRequest}>
+                <FormControl fullWidth className={props.classes.margin}>
+                  <Input
+                    id="adornment-amount"
+                    value={props.searchText}
+                    onChange={props.handleSearchChange}
+                    disableUnderline={true}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <Search style={{ marginLeft: '7px' }} />
+                      </InputAdornment>
+                    }
                   />
-                ) : (
-                  map(
-                    props => (
-                      <div className="mb2">
-                        <ResultCard {...props} />
-                      </div>
-                    ),
-                    props.searchResults
-                  )
-                )}
-              </div>
-            </Grid>
-            <Grid className="vh-100 dt w-100 tc cover" item xs={3}>
-              <Typography variant="subheading" gutterBottom>
-                Filters
-              </Typography>
-              <FilterList
-                toggleFilter={props.toggleFilter}
-                state={props.state}
-                handleSelectCost={props.handleSelectCost}
-                handleSelectSource={props.handleSelectSource}
-              />
-            </Grid>
-          </Grid>
+                </FormControl>
+              </form>
+            </Paper>
+          </div>
+          <Button
+            color="black"
+            style={{ position: 'absolute', top: 14, right: 10 }}
+            onClick={props.toggleDrawer}
+          >
+            <FilterList />
+          </Button>
+        </Toolbar>
+      </AppBar>
+
+      <Drawer
+        anchor="right"
+        open={props.drawerOpen}
+        classes={{
+          paper: props.classes.drawerPaper
+        }}
+        ModalProps={{
+          keepMounted: true // Better open performance on mobile.
+        }}
+      >
+        <div className="pt3 pl3 pointer" onClick={props.toggleDrawer}>
+          <Close />
         </div>
-      </div>
-      )
+        <Typography
+          variant="h2"
+          style={{
+            textAlign: 'center',
+            marginTop: '2em',
+            letterSpacing: '.3em'
+          }}
+          gutterBottom
+        >
+          FILTERS
+        </Typography>
+        <FilterListComp
+          toggleFilter={props.toggleFilter}
+          state={props.state}
+          handleSelectCost={props.handleSelectCost}
+          handleSelectSource={props.handleSelectSource}
+        />
+      </Drawer>
+      <main className={props.classes.content}>
+        <div
+          style={{
+            backgroundColor: '#f5f5f5'
+          }}
+          className="vh-100 dt w-100 tc cover"
+        >
+          <div className="mt3">
+            {props.searchFetching ? (
+              <CircularProgress className={props.classes.progress} size={50} />
+            ) : resourcesToShow.length > 0 ? (
+              map(showCard, resourcesToShow)
+            ) : (
+              <Paper style={{ padding: '2em', width: '90%', margin: '0 auto' }}>
+                <div>No resources were found that match your search.</div>
+              </Paper>
+            )}
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
@@ -180,7 +242,7 @@ const Home = props => {
           <div className="dtc v-mid">
             <header className="white-70" />
             <div className="w-50 center">
-              <h2 className="f2 fw1 i white">
+              <h2 className="f3 fw1 i white">
                 Search For Flooding Related Material in The Greater Charleston
                 Area
               </h2>
@@ -191,8 +253,8 @@ const Home = props => {
                   <FormControl fullWidth className={props.classes.margin}>
                     <Input
                       id="adornment-amount"
-                      value={'wow'}
-                      onChange={() => {}}
+                      value={props.searchText}
+                      onChange={props.handleSearchChange}
                       startAdornment={
                         <InputAdornment position="start">
                           <Search />
@@ -216,13 +278,37 @@ class App extends Component {
     this.state = {
       searchResults: [],
       searchFetching: false,
-      toolsFilter: false,
-      dataVisualizationsFilter: false,
-      communityResourcesFilter: false,
-      insuranceFilter: false,
+      searchText: '',
+      tools: true,
+      'data-visualizations': true,
+      'community-resources': true,
+      insurance: true,
       sources: [],
-      cost: ''
+      cost: '',
+      categoriesToShow: [],
+      drawerOpen: false
     }
+  }
+
+  toggleDrawer = () => {
+    const updatedValue = not(prop('drawerOpen', this.state))
+    const updatedState = assoc('drawerOpen', updatedValue, this.state)
+    this.setState(updatedState)
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      categoriesToShow: [
+        'data-visualizations',
+        'community-resources',
+        'tools',
+        'insurance'
+      ]
+    })
+  }
+
+  handleSearchChange = e => {
+    this.setState({ searchText: e.target.value })
   }
 
   handleSearchRequest = e => {
@@ -235,12 +321,40 @@ class App extends Component {
       },
       handleError: err => console.log('err!', err)
     }
-    performSearch(handlers)('test')
+    performSearch(handlers)(this.state.searchText)
   }
 
   toggleFilter = type => () => {
-    const updatedState = assoc(type, not(prop(type, this.state)), this.state)
-    this.setState(updatedState)
+    const updatedValue = not(prop(type, this.state))
+    const updatedState = assoc(type, updatedValue, this.state)
+    const updatedValObj = objOf(type, updatedValue)
+
+    const categoriesToShow = map(
+      head,
+      filter(
+        nth(1),
+        toPairs(
+          merge(
+            pick(
+              [
+                'tools',
+                'data-visualizations',
+                'community-resources',
+                'insurance'
+              ],
+              this.state
+            ),
+            updatedValObj
+          )
+        )
+      )
+    )
+
+    // const updatedSearchResults = map((x) => {
+    //   return assoc('show',contains(),x)
+    // },this.state.searchResults)
+
+    this.setState(merge(updatedState, { categoriesToShow }))
   }
 
   handleSelectSource = event => {
@@ -252,6 +366,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('state', this.state)
     return (
       <div className="App">
         <BrowserRouter>
@@ -264,6 +379,8 @@ class App extends Component {
                   handleSearchRequest={this.handleSearchRequest}
                   classes={this.props.classes}
                   searchFetching={this.state.searchFetching}
+                  searchText={this.state.searchText}
+                  handleSearchChange={this.handleSearchChange}
                 />
               )}
             />
@@ -272,13 +389,18 @@ class App extends Component {
               path="/search"
               render={() => (
                 <SearchComp
+                  handleSearchRequest={this.handleSearchRequest}
                   searchResults={this.state.searchResults}
                   searchFetching={this.state.searchFetching}
                   classes={this.props.classes}
+                  searchText={this.state.searchText}
+                  toggleDrawer={this.toggleDrawer}
+                  handleSearchChange={this.handleSearchChange}
                   toggleFilter={this.toggleFilter}
                   state={this.state}
                   handleSelectCost={this.handleSelectCost}
                   handleSelectSource={this.handleSelectSource}
+                  drawerOpen={this.state.drawerOpen}
                 />
               )}
             />

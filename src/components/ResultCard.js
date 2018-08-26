@@ -17,13 +17,19 @@ import ShareIcon from '@material-ui/icons/Share'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import BeachAccess from '@material-ui/icons/BeachAccess'
 import OpenInNew from '@material-ui/icons/OpenInNew'
+import BarChart from '@material-ui/icons/BarChart'
+import Grade from '@material-ui/icons/Grade'
 import Chip from '@material-ui/core/Chip'
-import { prop, map, __ } from 'ramda'
+import Button from '@material-ui/core/Button'
+import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
+import { prop, map, __, head, propOr, isEmpty, tail } from 'ramda'
 
 const styles = theme => ({
   card: {
     width: '80%',
-    margin: '0 auto'
+    margin: '0 auto',
+    textAlign: 'left',
+    maxWidth: '900px'
   },
   media: {
     height: 0,
@@ -49,7 +55,8 @@ const styles = theme => ({
     transform: 'rotate(180deg)'
   },
   avatar: {
-    backgroundColor: red[500]
+    width: 60,
+    height: 60
   }
 })
 
@@ -64,45 +71,105 @@ class ResultCard extends React.Component {
     const { classes } = this.props
 
     const iconMap = prop(__, {
-      coastal: <BeachAccess />
+      'data-visualizations': <BarChart />,
+      tools: <Grade />,
+      tool: <Grade />,
+      'community-resources': <FormatAlignLeft />
+    })
+
+    const AvaWar = props => {
+      const images = propOr([], 'images', this.props)
+      return isEmpty(images) ? (
+        <Avatar className={classes.purpleAvatar}>{head(props.title)}</Avatar>
+      ) : (
+        <Avatar aria-label="" src={head(images)} className={classes.avatar} />
+      )
+    }
+
+    const categoriesMap = prop(__, {
+      'data-visualizations': 'Data Visualizations',
+      'community-resources': 'Community Resources',
+      tools: 'Tools',
+      tool: 'Tools',
+      insurance: 'insurance'
     })
 
     return (
       <Card className={classes.card}>
         <CardHeader
+          avatar={<AvaWar {...this.props} />}
           action={
             <IconButton>
               <a
-                style={{ textDecoration: 'none', color: 'black !important' }}
+                style={{ textDecoration: 'none' }}
                 href={this.props.url}
                 target="_blank"
               >
-                <OpenInNew />
+                <OpenInNew style={{ textDecoration: 'none', color: 'black' }} />
               </a>
             </IconButton>
           }
           title={this.props.title}
-          subheader="Tools"
         />
+        <div style={{ borderTop: '1px solid lightgray' }} />
+
         <CardContent style={{ borderTop: '1px solid lightgray' }}>
-          <Typography variant="subheading" gutterBottom>
-            Categories
-          </Typography>
-          <Typography component="p">
-            {map(
-              x => {
-                return (
-                  <Chip
-                    avatar={<Avatar>{iconMap(x)}</Avatar>}
-                    label={x}
-                    className={classes.chip}
-                  />
-                )
-              },
-              ['coastal']
-            )}
-          </Typography>
+          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+            <Typography paragraph>{this.props.description}</Typography>
+          </Collapse>
         </CardContent>
+
+        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+          <div className="flex justify-around">
+            {map(img => {
+              return (
+                <a
+                  style={{ textDecoration: 'none' }}
+                  href={this.props.url}
+                  target="_blank"
+                  className="pointer"
+                >
+                  <img src={img} />
+                </a>
+              )
+            }, tail(this.props.images))}
+          </div>
+        </Collapse>
+        {this.props.pdf && (
+          <a
+            style={{ textDecoration: 'none' }}
+            href={this.props.url}
+            target="_blank"
+          >
+            <Button style={{ color: 'black', marginLeft: '1em' }}>
+              DOWNLOAD
+            </Button>
+          </a>
+        )}
+        <CardActions className={classes.actions} disableActionSpacing>
+          <Typography component="p">
+            {map(x => {
+              return (
+                <Chip
+                  avatar={<Avatar>{iconMap(x)}</Avatar>}
+                  label={categoriesMap(x)}
+                  className={classes.chip}
+                />
+              )
+            }, this.props.categories)}
+          </Typography>
+          <IconButton
+            className={classnames(classes.expand, {
+              [classes.expandOpen]: this.state.expanded
+            })}
+            onClick={this.handleExpandClick}
+            aria-expanded={this.state.expanded}
+            aria-label="Show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit />
       </Card>
     )
   }

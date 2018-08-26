@@ -22,14 +22,15 @@ export default class extends React.Component {
       handleSelectCost,
       handleSelectSource
     } = this.props
+
     return (
       <React.Fragment>
         <List>
           <ListItem>
             <ListItemIcon>
               <Checkbox
-                onChange={toggleFilter('toolsFilter')}
-                checked={state.toolsFilter}
+                onChange={toggleFilter('tools')}
+                checked={state.tools}
               />
             </ListItemIcon>
             <ListItemText primary="Tools" />
@@ -37,8 +38,8 @@ export default class extends React.Component {
           <ListItem>
             <ListItemIcon>
               <Checkbox
-                onChange={toggleFilter('dataVisualizationsFilter')}
-                checked={state.dataVisualizationsFilter}
+                onChange={toggleFilter('data-visualizations')}
+                checked={state['data-visualizations']}
               />
             </ListItemIcon>
             <ListItemText primary="Data Visualizations" />
@@ -46,8 +47,8 @@ export default class extends React.Component {
           <ListItem>
             <ListItemIcon>
               <Checkbox
-                onChange={toggleFilter('communityResourcesFilter')}
-                checked={state.communityResourcesFilter}
+                onChange={toggleFilter('community-resources')}
+                checked={state['community-resources']}
               />
             </ListItemIcon>
             <ListItemText primary="Community Resources" />
@@ -55,37 +56,13 @@ export default class extends React.Component {
           <ListItem>
             <ListItemIcon>
               <Checkbox
-                onChange={toggleFilter('insuranceFilter')}
-                checked={state.insuranceFilter}
+                onChange={toggleFilter('insurance')}
+                checked={state.insurance}
               />
             </ListItemIcon>
             <ListItemText primary="Insurance" />
           </ListItem>
         </List>
-        <FormControl>
-          <InputLabel>Cost</InputLabel>
-          <Select value={state.cost} onChange={handleSelectCost}>
-            <MenuItem value="free">Free</MenuItem>
-            <MenuItem value="paid">Paid</MenuItem>
-          </Select>
-        </FormControl>
-        <br />
-        <FormControl>
-          <InputLabel htmlFor="select-multiple">Source</InputLabel>
-          <Select
-            multiple
-            onChange={handleSelectSource}
-            value={state.sources}
-            input={<Input id="select-multiple" />}
-          >
-            {map(
-              url => (
-                <MenuItem value={url}>{url}</MenuItem>
-              ),
-              baseUrls
-            )}
-          </Select>
-        </FormControl>
       </React.Fragment>
     )
   }
