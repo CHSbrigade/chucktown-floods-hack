@@ -91,14 +91,15 @@ export default class extends React.Component {
                 />
               </div>
               <Map
-                latitude={this.props.lat || 32.772276}
-                longitude={this.props.lng || -79.93131}
+                latitude={this.state.latitude || 32.772276}
+                longitude={this.state.longitude || -79.93131}
                 pitch={this.state.pitch}
                 zoom={this.state.zoom}
                 height={height}
                 width={width}
                 onViewportChange={this.updateViewport}
-                extraLayers={this.state.extraLayers}
+                mapStyle='mapbox://styles/brychappell/cjl9wskda0hxb2snvpjum5jve'
+                opacity={90}
               />
               <div className="absolute bottom-1 pa1">
                 {this.state.ts.initialized && this.renderSlider(this.state)}
@@ -141,6 +142,7 @@ export default class extends React.Component {
   }
 
   updateViewport (viewport) {
-    this.setState({ ...viewport })
+    console.log(viewport)
+    this.setState(viewport)
   }
 }
