@@ -11,7 +11,6 @@ export default ({start, end} = {}) => {
 
   return fetch(url)
     .then(res => res.json())
-    .then(json => JSON.stringify(json))
 }
 
 const config = {
@@ -36,10 +35,8 @@ const queryParams = compose(
 const formatTs = ts => ts.toFormat('yyyyMMdd HH:mm')
 
 const beginTs = ts => ts ?
-  DateTime(ts) :
+  ts :
   DateTime.local().minus({ hours: 5 })
 
-const endTs = ts => ts ?
-  DateTime(ts) :
-  DateTime.local()
+const endTs = ts => ts ? ts : DateTime.local()
 
