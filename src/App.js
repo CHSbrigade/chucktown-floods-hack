@@ -35,6 +35,7 @@ import Grid from '@material-ui/core/Grid'
 import ResourceDetail from './components/ResourceDetail'
 import FilterList from './components/FilterList'
 import { withRouter } from 'react-router'
+import Tides from './components/FooTides'
 
 const styles = theme => ({
   root: {
@@ -282,6 +283,7 @@ class App extends Component {
               )}
             />
             <Route exact path="/map" component={MapContainer} />
+            <Route exact path="/tides" component={Tides} />
             <Route path="/resource/:id" component={ResourceDetail} />
           </Switch>
         </BrowserRouter>
