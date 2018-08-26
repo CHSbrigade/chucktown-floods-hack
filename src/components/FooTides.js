@@ -20,9 +20,11 @@ export default class extends React.Component {
   render () {
     const { data, isFetching } = this.state
 
+    console.log(data)
+
     return (
       <div>
-        {data}
+        {JSON.stringify(data)}
         {isFetching && 'Fetching tidal data...'}
       </div>
     )
