@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ContainerDimensions from 'react-container-dimensions'
 import { DateTime } from 'luxon'
-import { tap, compose, map, prop, pluck } from 'ramda'
+import { compose, map, prop, pluck } from 'ramda'
 import Map from './Map'
 import MapSearch from './MapSearch'
 import MapSlider from './MapSlider'
@@ -45,11 +45,10 @@ export default class extends React.Component {
   async initTS () {
     const t = DateTime.local().minus({hours: 5 })
     const tides = await fetchTides({start: t})
+    console.log(tides)
 
     const extractMarkers = compose(
-      tap(console.log),
       map(str => new DateTime.fromFormat(str, 'yyyy-MM-dd HH:mm')),
-      tap(console.log),
       pluck('t'),
       prop('data')
     )
