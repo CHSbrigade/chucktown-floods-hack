@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router'
-import { BrowserRouter, Link } from 'react-router-dom'
+import { HashRouter, Link } from 'react-router-dom'
 import Hidden from '@material-ui/core/Hidden'
 import Button from '@material-ui/core/Button'
 import coastToolsData from './coastal-tools.json'
@@ -475,7 +475,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
+        <HashRouter>
           <Switch>
             <Route
               exact
@@ -528,7 +528,7 @@ class App extends Component {
             <Route exact path="/tides" component={Tides} />
             <Route path="/resource/:id" component={ResourceDetail} />
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     )
   }
