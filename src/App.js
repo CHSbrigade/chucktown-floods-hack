@@ -55,6 +55,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
 import FilterList from '@material-ui/icons/FilterList'
+import Help from '@material-ui/icons/Help'
 import Place from '@material-ui/icons/Place'
 import Close from '@material-ui/icons/Close'
 
@@ -162,6 +163,7 @@ const SearchComp = props => {
                     value={props.searchText}
                     onChange={props.handleSearchChange}
                     disableUnderline={true}
+                    placeholder={`try "Flood Map"`}
                     startAdornment={
                       <InputAdornment position="start">
                         <Search style={{ marginLeft: '7px' }} />
@@ -257,18 +259,40 @@ const Home = props => {
           className="vh-100 dt w-100 tc bg-dark-gray white cover"
           style={{ background: `url(${bg}) no-repeat center` }}
         >
-          <Link to="/map">
-            <Button
-              style={{
-                position: 'absolute',
-                top: '2em',
-                right: '2em',
-                color: 'white'
-              }}
-            >
-              <Place /> Map
-            </Button>
-          </Link>
+          <div
+            style={{
+              position: 'absolute',
+              top: '2em',
+              right: '2em',
+              color: 'white',
+              letterSpacing: '1px',
+              textDecoration: 'none'
+            }}
+          >
+            <Link to="/search" style={{ textDecoration: 'none' }}>
+              <Button
+                style={{
+                  color: 'white',
+                  letterSpacing: '1px',
+                  textDecoration: 'none'
+                }}
+              >
+                {/* <Help /> */}
+                <span style={{ textDecoration: 'none' }}> RESOURCES</span>
+              </Button>
+            </Link>
+            <Link to="/map" style={{ textDecoration: 'none' }}>
+              <Button
+                style={{
+                  color: 'white',
+                  letterSpacing: '1px',
+                  textDecoration: 'none'
+                }}
+              >
+                <Place /> MAP
+              </Button>
+            </Link>
+          </div>
           <div
             style={{
               position: 'absolute',
@@ -382,6 +406,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+    this.handleSearchRequest({ preventDefault: () => {}, initial: true })
     this.setState({
       categoriesToShow: [
         'data-visualizations',
@@ -400,7 +425,8 @@ class App extends Component {
     e.preventDefault()
 
     const handlers = {
-      handleStart: () => this.setState({ searchFetching: true }),
+      handleStart: () =>
+        this.setState({ searchFetching: e.initial ? false : true }),
       handleResult: searchResults => {
         this.setState({ searchResults, searchFetching: false })
       },
@@ -435,10 +461,6 @@ class App extends Component {
       )
     )
 
-    // const updatedSearchResults = map((x) => {
-    //   return assoc('show',contains(),x)
-    // },this.state.searchResults)
-
     this.setState(merge(updatedState, { categoriesToShow }))
   }
 
@@ -451,7 +473,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('state', this.state)
     return (
       <div className="App">
         <BrowserRouter>
