@@ -23,7 +23,6 @@ export default class extends React.Component {
       handleSelectSource
     } = this.props
 
-    console.log('componentstate', state)
     return (
       <React.Fragment>
         <List>
@@ -64,30 +63,6 @@ export default class extends React.Component {
             <ListItemText primary="Insurance" />
           </ListItem>
         </List>
-        <FormControl>
-          <InputLabel>Cost</InputLabel>
-          <Select value={state.cost} onChange={handleSelectCost}>
-            <MenuItem value="free">Free</MenuItem>
-            <MenuItem value="paid">Paid</MenuItem>
-          </Select>
-        </FormControl>
-        <br />
-        <FormControl>
-          <InputLabel htmlFor="select-multiple">Source</InputLabel>
-          <Select
-            multiple
-            onChange={handleSelectSource}
-            value={state.sources}
-            input={<Input id="select-multiple" />}
-          >
-            {map(
-              url => (
-                <MenuItem value={url}>{url}</MenuItem>
-              ),
-              baseUrls
-            )}
-          </Select>
-        </FormControl>
       </React.Fragment>
     )
   }

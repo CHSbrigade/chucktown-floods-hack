@@ -49,9 +49,11 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
+import FilterList from '@material-ui/icons/FilterList'
+import Close from '@material-ui/icons/Close'
 import Grid from '@material-ui/core/Grid'
 import ResourceDetail from './components/ResourceDetail'
-import FilterList from './components/FilterList'
+import FilterListComp from './components/FilterList'
 import { withRouter } from 'react-router'
 import algoliasearch from 'algoliasearch'
 import ContainerDimensions from 'react-container-dimensions'
@@ -140,7 +142,11 @@ const SearchComp = props => {
             </Link>
           </IconButton>
           <div>
-            <Paper className={props.classes.inputAppBar} elevation={1}>
+            <Paper
+              className={props.classes.inputAppBar}
+              style={{ position: 'relative', top: '2px' }}
+              elevation={1}
+            >
               <form onSubmit={props.handleSearchRequest}>
                 <FormControl fullWidth className={props.classes.margin}>
                   <Input
@@ -150,7 +156,7 @@ const SearchComp = props => {
                     disableUnderline={true}
                     startAdornment={
                       <InputAdornment position="start">
-                        <Search />
+                        <Search style={{ marginLeft: '7px' }} />
                       </InputAdornment>
                     }
                   />
@@ -158,12 +164,19 @@ const SearchComp = props => {
               </form>
             </Paper>
           </div>
+          <Button
+            color="black"
+            style={{ position: 'absolute', top: 14, right: 10 }}
+            onClick={props.toggleDrawer}
+          >
+            <FilterList />
+          </Button>
         </Toolbar>
       </AppBar>
 
       <Drawer
         anchor="right"
-        open={true}
+        open={props.drawerOpen}
         classes={{
           paper: props.classes.drawerPaper
         }}
@@ -171,10 +184,21 @@ const SearchComp = props => {
           keepMounted: true // Better open performance on mobile.
         }}
       >
-        <Typography variant="subheading" gutterBottom>
-          Filters
+        <div className="pt3 pl3 pointer" onClick={props.toggleDrawer}>
+          <Close />
+        </div>
+        <Typography
+          variant="h2"
+          style={{
+            textAlign: 'center',
+            marginTop: '2em',
+            letterSpacing: '.3em'
+          }}
+          gutterBottom
+        >
+          FILTERS
         </Typography>
-        <FilterList
+        <FilterListComp
           toggleFilter={props.toggleFilter}
           state={props.state}
           handleSelectCost={props.handleSelectCost}
@@ -217,7 +241,7 @@ const Home = props => {
           <div className="dtc v-mid">
             <header className="white-70" />
             <div className="w-50 center">
-              <h2 className="f2 fw1 i white">
+              <h2 className="f3 fw1 i white">
                 Search For Flooding Related Material in The Greater Charleston
                 Area
               </h2>
@@ -261,7 +285,14 @@ class App extends Component {
       sources: [],
       cost: '',
       categoriesToShow: [],
+      drawerOpen: false
     }
+  }
+
+  toggleDrawer = () => {
+    const updatedValue = not(prop('drawerOpen', this.state))
+    const updatedState = assoc('drawerOpen', updatedValue, this.state)
+    this.setState(updatedState)
   }
 
   componentDidMount = () => {
@@ -281,15 +312,6 @@ class App extends Component {
 
   handleSearchRequest = e => {
     e.preventDefault()
-
-    // var client = algoliasearch('62T98J3F05', 'a25dce6b2ca36b908fabd00d96feb813')
-    // var index = client.initIndex('data_1')
-
-    // // firstname
-    // index.search(this.state.searchText, function(err, content) {
-    //   console.log('content', content)
-    //   this.setState({})
-    // })
 
     const handlers = {
       handleStart: () => this.setState({ searchFetching: true }),
@@ -371,11 +393,13 @@ class App extends Component {
                   searchFetching={this.state.searchFetching}
                   classes={this.props.classes}
                   searchText={this.state.searchText}
+                  toggleDrawer={this.toggleDrawer}
                   handleSearchChange={this.handleSearchChange}
                   toggleFilter={this.toggleFilter}
                   state={this.state}
                   handleSelectCost={this.handleSelectCost}
                   handleSelectSource={this.handleSelectSource}
+                  drawerOpen={this.state.drawerOpen}
                 />
               )}
             />
