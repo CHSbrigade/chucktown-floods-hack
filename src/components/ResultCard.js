@@ -18,12 +18,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import BeachAccess from '@material-ui/icons/BeachAccess'
 import OpenInNew from '@material-ui/icons/OpenInNew'
 import Chip from '@material-ui/core/Chip'
-import { prop, map, __ } from 'ramda'
+import { prop, map, __, head, propOr, isEmpty } from 'ramda'
 
 const styles = theme => ({
   card: {
     width: '80%',
-    margin: '0 auto'
+    margin: '0 auto',
+    textAlign: 'left'
   },
   media: {
     height: 0,
@@ -49,7 +50,8 @@ const styles = theme => ({
     transform: 'rotate(180deg)'
   },
   avatar: {
-    backgroundColor: red[500]
+    width: 60,
+    height: 60
   }
 })
 
@@ -67,9 +69,26 @@ class ResultCard extends React.Component {
       coastal: <BeachAccess />
     })
 
+    const AvaWar = props => {
+      const images = propOr([], 'images', this.props)
+      return isEmpty(images) ? (
+        <Avatar className={classes.purpleAvatar}>{head(props.title)}</Avatar>
+      ) : (
+        <Avatar aria-label="" src={head(images)} className={classes.avatar} />
+      )
+    }
+
+    const categoriesMap = prop(__, {
+      'data-visualizations': 'Data Visualizations',
+      'community-resources': 'Community Resources',
+      tools: 'Tools',
+      insurance: 'insurance'
+    })
+
     return (
       <Card className={classes.card}>
         <CardHeader
+          avatar={<AvaWar {...this.props} />}
           action={
             <IconButton>
               <a
@@ -82,14 +101,17 @@ class ResultCard extends React.Component {
             </IconButton>
           }
           title={this.props.title}
-          subheader="Tools"
+          subheader={this.props.categories
+            .map(x => categoriesMap(x))
+            .join(' | ')}
         />
+
         <CardContent style={{ borderTop: '1px solid lightgray' }}>
           <Typography variant="subheading" gutterBottom>
             Categories
           </Typography>
           <Typography component="p">
-            {map(
+            {/* {map(
               x => {
                 return (
                   <Chip
@@ -100,7 +122,7 @@ class ResultCard extends React.Component {
                 )
               },
               ['coastal']
-            )}
+            )} */}
           </Typography>
         </CardContent>
       </Card>
