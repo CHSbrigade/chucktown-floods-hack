@@ -2,6 +2,10 @@ import React, { Fragment } from 'react'
 import ContainerDimensions from 'react-container-dimensions'
 import { DateTime } from 'luxon'
 import { compose, map, prop, pluck } from 'ramda'
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from 'react-places-autocomplete'
 import Map from './Map'
 import MapSearch from './MapSearch'
 import MapSlider from './MapSlider'
@@ -14,12 +18,10 @@ export default class extends React.Component {
     super(props)
 
     this.state = {
+      address: '',
       latitude: props.lat || 32.772276,
       longitude: props.lng || -79.93131,
       pitch: 45,
-      search: {
-        q: ''
-      },
       ts: {
         initialized: false,
         idx: -1,
@@ -31,10 +33,8 @@ export default class extends React.Component {
       extraLayers: [FloodLayers[0]]
     }
 
-    this.submit = this.submit.bind(this)
     this.initTS = this.initTS.bind(this)
-    this.updateSearch = this.updateSearch.bind(this)
-    this.updateTSMarker = this.updateTSMarker.bind(this)
+    this.handleAddressSelect = this.handleAddressSelect.bind(this)
     this.updateViewport = this.updateViewport.bind(this)
   }
 
@@ -82,17 +82,14 @@ export default class extends React.Component {
                 style={{ width: '50%', minWidth: 350 }}
               >
                 <MapSearch
-                  onChange={this.updateSearch}
-                  onSubmit={this.submit}
-                  value={this.state.search.q}
-                  handleAddressChange={this.props.handleAddressChange}
-                  handleAddressSelect={this.props.handleAddressSelect}
-                  address={this.props.address}
+                  address={this.state.address}
+                  handleAddressChange={this.handleAddressChange}
+                  handleAddressSelect={this.handleAddressSelect}
                 />
               </div>
               <Map
-                latitude={this.state.latitude || 32.772276}
-                longitude={this.state.longitude || -79.93131}
+                latitude={this.state.latitude}
+                longitude={this.state.longitude}
                 pitch={this.state.pitch}
                 zoom={this.state.zoom}
                 height={height}
@@ -128,21 +125,27 @@ export default class extends React.Component {
     )
   }
 
-  submit (evt) {
-    evt.preventDefault()
-    console.log(evt)
+  handleAddressChange = address => {
+    this.setState({ address })
   }
 
-  updateSearch(evt) {
-    this.setState({ search: { ...this.state.search, q: evt.target.value } })
-  }
+  async handleAddressSelect (address) {
+    this.setState({ address: address })
 
-  updateTSMarker () {
-    // TODO:
+    try {
+      const results = await geocodeByAddress(address)
+      const { lat: latitude, lng: longitude } = await getLatLng(results[0])
+
+      this.setState({
+        latitude,
+        longitude,
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   updateViewport (viewport) {
-    console.log(viewport)
     this.setState(viewport)
   }
 }
