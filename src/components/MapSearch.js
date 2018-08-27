@@ -34,7 +34,7 @@ export default props => (
           style={{ position: 'relative', top: '15px', right: '5px' }}
         />
       </Link>
-      <form onSubmit={props.onSubmit} style={{ width: '90%', float: 'right' }}>
+      <form style={{ width: '90%', float: 'right' }}>
         <PlacesAutocomplete
           value={props.address}
           onChange={props.handleAddressChange}

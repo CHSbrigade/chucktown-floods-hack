@@ -5,10 +5,6 @@ import Hidden from '@material-ui/core/Hidden'
 import Button from '@material-ui/core/Button'
 import coastToolsData from './coastal-tools.json'
 import baseUrls from './base-url.json'
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng
-} from 'react-places-autocomplete'
 import {
   map,
   nth,
@@ -380,30 +376,6 @@ class App extends Component {
     this.setState(updatedState)
   }
 
-  handleAddressChange = address => {
-    this.setState({ address })
-  }
-  handleAddressSelect = address => {
-    geocodeByAddress(address)
-      .then(results => {
-        console.log('results', results)
-        return {
-          latLng: getLatLng(results[0]),
-          address: results[0].formatted_address
-        }
-      })
-      .then(res => {
-        const { latLng, address } = res
-        latLng.then(x => {
-          this.setState({
-            lat: x.lat,
-            lng: x.lng,
-            address
-          })
-        })
-      })
-      .catch(error => console.error('Error', error))
-  }
 
   componentDidMount = () => {
     this.handleSearchRequest({ preventDefault: () => {}, initial: true })
