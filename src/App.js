@@ -1,20 +1,12 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router'
 import { HashRouter, Link } from 'react-router-dom'
-import Hidden from '@material-ui/core/Hidden'
 import Button from '@material-ui/core/Button'
-import coastToolsData from './coastal-tools.json'
-import baseUrls from './base-url.json'
 import {
   map,
   nth,
-  intersection,
-  contains,
-  isEmpty,
-  length,
   assoc,
   not,
-  reject,
   prop,
   pick,
   toPairs,
@@ -28,39 +20,14 @@ import bg from './assets/bg.png'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import InputLabel from '@material-ui/core/InputLabel'
 import MapContainer from './components/MapContainer'
-import ResultCard from './components/ResourcePortal/components/ResultCard'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
-import TextField from '@material-ui/core/TextField'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import Drawer from '@material-ui/core/Drawer'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Checkbox from '@material-ui/core/Checkbox'
 import Search from '@material-ui/icons/Search'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
-import FilterList from '@material-ui/icons/FilterList'
-import Help from '@material-ui/icons/Help'
 import Place from '@material-ui/icons/Place'
-import Close from '@material-ui/icons/Close'
 
-import Grid from '@material-ui/core/Grid'
 import ResourceDetail from './components/ResourceDetail'
-import FilterListComp from './components/ResourcePortal/components/FilterList'
-import { withRouter } from 'react-router'
-import algoliasearch from 'algoliasearch'
-import ContainerDimensions from 'react-container-dimensions'
 import Tides from './components/FooTides'
 
 import ResourcePortalPage from './components/ResourcePortal'
