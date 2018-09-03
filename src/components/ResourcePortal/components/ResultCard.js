@@ -138,7 +138,7 @@ class ResultCard extends React.Component {
                   target="_blank"
                   className="pointer"
                 >
-                  <img src={img} />
+                  <img src={img} alt='screenshot' />
                 </a>
               )
             }, tail(this.props.images))}
