@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import ContainerDimensions from 'react-container-dimensions'
 import { DateTime } from 'luxon'
 import { compose, map, prop, pluck } from 'ramda'
-import PlacesAutocomplete, {
+import {
   geocodeByAddress,
   getLatLng
 } from 'react-places-autocomplete'
