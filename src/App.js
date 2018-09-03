@@ -57,7 +57,7 @@ import Close from '@material-ui/icons/Close'
 
 import Grid from '@material-ui/core/Grid'
 import ResourceDetail from './components/ResourceDetail'
-import FilterListComp from './components/FilterList'
+import FilterListComp from './components/ResourcePortal/components/FilterList'
 import { withRouter } from 'react-router'
 import algoliasearch from 'algoliasearch'
 import ContainerDimensions from 'react-container-dimensions'

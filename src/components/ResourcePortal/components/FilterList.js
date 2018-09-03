@@ -10,9 +10,9 @@ import {
   FormControl,
   InputLabel,
   Input
-} from '../../node_modules/@material-ui/core'
+} from '@material-ui/core'
 import { map } from 'ramda'
-import baseUrls from '../base-url.json'
+import baseUrls from '../../../base-url.json'
 
 export default class extends React.Component {
   render() {
