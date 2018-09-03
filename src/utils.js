@@ -6,8 +6,11 @@ export const performSearch = (
 ) => searchTerm => {
   handleStart && handleStart()
 
-  var client = algoliasearch('62T98J3F05', 'a25dce6b2ca36b908fabd00d96feb813')
-  var index = client.initIndex('data_1')
+  var client = algoliasearch(
+    process.env.REACT_APP_ALGOLIA_APP_ID,
+    process.env.REACT_APP_ALGOLIA_API_KEY
+  )
+  var index = client.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_ID)
 
   // firstname
   index.search(searchTerm, function(err, content) {
