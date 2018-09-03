@@ -126,7 +126,7 @@ const Home = props => {
               width: 50
             }}
           >
-            <img src="https://file-tojimaepbm.now.sh/" />
+            <img src="https://file-tojimaepbm.now.sh/" alt='logo' />
           </div>
           <div className="dtc v-mid">
             <header className="white-70" />
