@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import {
   contains,
@@ -31,7 +32,7 @@ import {
 import FilterListComp from './FilterList'
 import ResultCard from './ResultCard'
 
-export default props => {
+const fn = props => {
   const {
     state: { categoriesToShow }
   } = props
@@ -172,3 +173,75 @@ export default props => {
     </div>
   )
 }
+
+const ALL_CATEGORIES = [
+  'data-visualzations',
+  'community-resources',
+  'tools',
+  'insurance',
+]
+
+fn.propTypes = {
+  classes: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    flex: PropTypes.string.isRequired,
+    inputAppBar: PropTypes.string.isRequired,
+    menuButton: PropTypes.string.isRequired,
+    paper: PropTypes.string.isRequired,
+    progress: PropTypes.string.isRequired,
+    root: PropTypes.string.isRequired,
+    rootGrid: PropTypes.string.isRequired,
+  }),
+  drawerOpen: PropTypes.bool.isRequired,
+  handleSearchChange: PropTypes.func.isRequired,
+  handleSearchRequest: PropTypes.func.isRequired,
+  handleSelectCost: PropTypes.func.isRequired,
+  handleSelectSource: PropTypes.func.isRequired,
+  searchFetching: PropTypes.bool.isRequired,
+  searchResults: PropTypes.arrayOf(PropTypes.shape({
+    categories: PropTypes.arrayOf(PropTypes.string),
+    description: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+    objectID: PropTypes.string,
+    title: PropTypes.string,
+    url: PropTypes.string,
+  })),
+  searchText: PropTypes.string.isRequired,
+  state: PropTypes.shape({
+    state: {
+      address: PropTypes.string,
+      categoriesToShow: PropTypes.arrayOf(PropTypes.string),
+      'community-resources': PropTypes.bool,
+      cost: PropTypes.string,
+      'data-visualizations': PropTypes.bool,
+      drawerOpen: PropTypes.bool,
+      insurance: PropTypes.bool,
+      searchFetching: PropTypes.bool,
+      searchResults: PropTypes.arrayOf(PropTypes.shape({
+        categories: PropTypes.arrayOf(PropTypes.string),
+        description: PropTypes.string,
+        images: PropTypes.arrayOf(PropTypes.string),
+        objectID: PropTypes.string,
+        title: PropTypes.string,
+        url: PropTypes.string,
+      })),
+      searchText: PropTypes.string,
+      sources: PropTypes.array,
+      tools: PropTypes.bool,
+    }
+  }),
+  toggleDrawer: PropTypes.func.isRequired,
+  toggleFilter: PropTypes.func.isRequired,
+}
+
+fn.defaultProps = {
+  drawerOpen: false,
+  searchFetching: false,
+  searchResults: [],
+  searchText: '',
+  state: {
+    categoriesToShow: ALL_CATEGORIES
+  }
+}
+
+export default fn
