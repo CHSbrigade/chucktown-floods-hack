@@ -5,22 +5,13 @@ import {
   Checkbox,
   ListItem,
   ListItemText,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Input
 } from '@material-ui/core'
-import { map } from 'ramda'
-import baseUrls from '../../../base-url.json'
 
 export default class extends React.Component {
   render() {
     const {
       toggleFilter,
       state,
-      handleSelectCost,
-      handleSelectSource
     } = this.props
 
     return (
