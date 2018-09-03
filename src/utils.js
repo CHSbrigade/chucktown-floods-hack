@@ -1,4 +1,3 @@
-import { default as data } from './coastal-tools.json'
 import algoliasearch from 'algoliasearch'
 
 export const performSearch = (
