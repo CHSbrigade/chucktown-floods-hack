@@ -1,13 +1,14 @@
 import React from "react"
 import ReactMapGL from "react-map-gl"
-import { fromJS } from "immutable"
-import { concat, forEach } from "ramda"
-
-import BaseStyle from "../data/map-style.json"
+import { forEach } from "ramda"
 
 import "mapbox-gl/dist/mapbox-gl.css"
 
 export default class extends React.Component {
+  static defaultProps = {
+    opacity: 0.5
+  }
+
   constructor () {
     super()
     this.applyOpacity = this.applyOpacity.bind(this)
@@ -33,6 +34,6 @@ export default class extends React.Component {
     const layerIds = ['flood 1', 'flood 2', 'flood 3']
     const mapEl = this.mapRef.getMap()
 
-    forEach(id => mapEl.setPaintProperty(id, 'opacity', 0.5))
+    forEach(id => mapEl.setPaintProperty(id, 'opacity', opacity), layerIds)
   }
 }
