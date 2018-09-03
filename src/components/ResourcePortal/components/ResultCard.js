@@ -4,23 +4,17 @@ import { withStyles } from '@material-ui/core/styles'
 import classnames from 'classnames'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
-import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import Collapse from '@material-ui/core/Collapse'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import red from '@material-ui/core/colors/red'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import ShareIcon from '@material-ui/icons/Share'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import BeachAccess from '@material-ui/icons/BeachAccess'
 import OpenInNew from '@material-ui/icons/OpenInNew'
 import BarChart from '@material-ui/icons/BarChart'
 import Grade from '@material-ui/icons/Grade'
 import Chip from '@material-ui/core/Chip'
-import Button from '@material-ui/core/Button'
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
 import { prop, map, __, head, propOr, isEmpty, tail } from 'ramda'
 
@@ -150,17 +144,6 @@ class ResultCard extends React.Component {
             }, tail(this.props.images))}
           </div>
         </Collapse>
-        {/* {this.props.pdf && (
-          <a
-            style={{ textDecoration: 'none' }}
-            href={this.props.url}
-            target="_blank"
-          >
-            <Button style={{ color: 'black', marginLeft: '1em' }}>
-              DOWNLOAD
-            </Button>
-          </a>
-        )} */}
         <CardActions className={classes.actions} disableActionSpacing>
           <Typography component="p">
             {map(x => {
