@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router'
 import { HashRouter } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
-import MapContainer from './components/MapContainer'
+import MapContainer from './components/Map/components/MapContainer'
 import ResourcePortalPage from './components/ResourcePortal'
 
 const styles = theme => ({

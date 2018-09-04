@@ -10,7 +10,7 @@ import Map from './Map'
 import MapSearch from './MapSearch'
 import MapSlider from './MapSlider'
 
-import fetchTides from '../data/tides'
+import fetchTides from '../lib/tides'
 import FloodLayers from '../data/flood-layers.json'
 
 export default class extends React.Component {
