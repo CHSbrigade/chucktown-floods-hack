@@ -179,98 +179,6 @@ const Home = props => {
 }
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      searchResults: [],
-      searchFetching: false,
-      searchText: '',
-      tools: true,
-      'data-visualizations': true,
-      'community-resources': true,
-      insurance: true,
-      sources: [],
-      cost: '',
-      categoriesToShow: [],
-      drawerOpen: false,
-      address: ''
-    }
-  }
-
-  toggleDrawer = () => {
-    const updatedValue = not(prop('drawerOpen', this.state))
-    const updatedState = assoc('drawerOpen', updatedValue, this.state)
-    this.setState(updatedState)
-  }
-
-
-  componentDidMount = () => {
-    this.handleSearchRequest({ preventDefault: () => {}, initial: true })
-    this.setState({
-      categoriesToShow: [
-        'data-visualizations',
-        'community-resources',
-        'tools',
-        'insurance'
-      ]
-    })
-  }
-
-  handleSearchChange = e => {
-    this.setState({ searchText: e.target.value })
-  }
-
-  handleSearchRequest = e => {
-    e.preventDefault()
-
-    const handlers = {
-      handleStart: () =>
-        this.setState({ searchFetching: e.initial ? false : true }),
-      handleResult: searchResults => {
-        this.setState({ searchResults, searchFetching: false })
-      },
-      handleError: err => console.log('err!', err)
-    }
-    performSearch(handlers)(this.state.searchText)
-  }
-
-  toggleFilter = type => () => {
-    const updatedValue = not(prop(type, this.state))
-    const updatedState = assoc(type, updatedValue, this.state)
-    const updatedValObj = objOf(type, updatedValue)
-
-    const categoriesToShow = map(
-      head,
-      filter(
-        nth(1),
-        toPairs(
-          merge(
-            pick(
-              [
-                'tools',
-                'data-visualizations',
-                'community-resources',
-                'insurance'
-              ],
-              this.state
-            ),
-            updatedValObj
-          )
-        )
-      )
-    )
-
-    this.setState(merge(updatedState, { categoriesToShow }))
-  }
-
-  handleSelectSource = event => {
-    this.setState({ sources: event.target.value })
-  }
-
-  handleSelectCost = event => {
-    this.setState({ cost: event.target.value })
-  }
-
   render() {
     return (
       <div className="App">
@@ -294,18 +202,7 @@ class App extends Component {
               path="/search"
               render={() => (
                 <ResourcePortalPage
-                  handleSearchRequest={this.handleSearchRequest}
-                  searchResults={this.state.searchResults}
-                  searchFetching={this.state.searchFetching}
                   classes={this.props.classes}
-                  searchText={this.state.searchText}
-                  toggleDrawer={this.toggleDrawer}
-                  handleSearchChange={this.handleSearchChange}
-                  toggleFilter={this.toggleFilter}
-                  state={this.state}
-                  handleSelectCost={this.handleSelectCost}
-                  handleSelectSource={this.handleSelectSource}
-                  drawerOpen={this.state.drawerOpen}
                 />
               )}
             />

@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import {
-  contains,
-  filter,
-  intersection,
-  length,
-  map,
-} from 'ramda'
+import { map } from 'ramda'
 import {
   AppBar,
   Button,
@@ -33,20 +27,6 @@ import FilterListComp from './FilterList'
 import ResultCard from './ResultCard'
 
 const fn = props => {
-  const {
-    state: { categoriesToShow }
-  } = props
-
-  const show = props => {
-    const matchesCategory =
-      length(intersection(props.categories, categoriesToShow)) > 0
-
-    const checks = [matchesCategory]
-    return !contains(false, checks)
-  }
-
-  const resourcesToShow = filter(show, props.searchResults)
-
   const showCard = props => (
     <div className="mb2">
       <ResultCard {...props} />
@@ -80,11 +60,11 @@ const fn = props => {
               style={{ position: 'relative', top: '2px', padding: '.5em' }}
               elevation={1}
             >
-              <form onSubmit={props.handleSearchRequest}>
+              <form onSubmit={props.handleSearchSubmit}>
                 <FormControl fullWidth className={props.classes.margin}>
                   <Input
                     id="adornment-amount"
-                    value={props.searchText}
+                    value={props.search.term}
                     onChange={props.handleSearchChange}
                     disableUnderline={true}
                     placeholder={`try "Flood Map"`}
@@ -111,7 +91,7 @@ const fn = props => {
           <Button
             color="black"
             style={{ position: 'absolute', top: 14, right: 10 }}
-            onClick={props.toggleDrawer}
+            onClick={props.handleToggleDrawer()}
           >
             <FilterList />
           </Button>
@@ -120,8 +100,8 @@ const fn = props => {
 
       <Drawer
         anchor="right"
-        onClose={props.toggleDrawer}
-        open={props.drawerOpen}
+        onClose={props.handleToggleDrawer(false)}
+        open={props.filters.visible}
         classes={{
           paper: props.classes.drawerPaper
         }}
@@ -129,7 +109,10 @@ const fn = props => {
           keepMounted: true // Better open performance on mobile.
         }}
       >
-        <div className="pt3 pl3 pointer" onClick={props.toggleDrawer}>
+        <div
+          className="pt3 pl3 pointer"
+          onClick={props.handleToggleDrawer(false)}
+        >
           <Close />
         </div>
         <Typography
@@ -144,10 +127,8 @@ const fn = props => {
           FILTERS
         </Typography>
         <FilterListComp
-          toggleFilter={props.toggleFilter}
-          state={props.state}
-          handleSelectCost={props.handleSelectCost}
-          handleSelectSource={props.handleSelectSource}
+          categories={props.filters.categories}
+          toggleCategory={props.handleToggleCategory}
         />
       </Drawer>
       <main className={props.classes.content}>
@@ -158,10 +139,10 @@ const fn = props => {
           className="vh-100 dt w-100 tc cover"
         >
           <div className="mt3">
-            {props.searchFetching ? (
+            {props.search.isFetching ? (
               <CircularProgress className={props.classes.progress} size={50} />
-            ) : resourcesToShow.length > 0 ? (
-              map(showCard, resourcesToShow)
+            ) : props.results.length > 0 ? (
+              map(showCard, props.results)
             ) : (
               <Paper style={{ padding: '2em', width: '90%', margin: '0 auto' }}>
                 <div>No resources were found that match your search.</div>
@@ -174,13 +155,6 @@ const fn = props => {
   )
 }
 
-const ALL_CATEGORIES = [
-  'data-visualzations',
-  'community-resources',
-  'tools',
-  'insurance',
-]
-
 fn.propTypes = {
   classes: PropTypes.shape({
     content: PropTypes.string.isRequired,
@@ -192,56 +166,39 @@ fn.propTypes = {
     root: PropTypes.string.isRequired,
     rootGrid: PropTypes.string.isRequired,
   }),
-  drawerOpen: PropTypes.bool.isRequired,
-  handleSearchChange: PropTypes.func.isRequired,
-  handleSearchRequest: PropTypes.func.isRequired,
-  handleSelectCost: PropTypes.func.isRequired,
-  handleSelectSource: PropTypes.func.isRequired,
-  searchFetching: PropTypes.bool.isRequired,
-  searchResults: PropTypes.arrayOf(PropTypes.shape({
+  filters: PropTypes.shape({
+    categories: {
+      'data-visualizations': PropTypes.bool.isRequired,
+      'community-resources': PropTypes.bool.isRequired,
+      tools: PropTypes.bool.isRequired,
+      insurance: PropTypes.bool.isRequired,
+    },
+    visible: PropTypes.bool.isRequired,
+  }).isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({
     categories: PropTypes.arrayOf(PropTypes.string),
     description: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
     objectID: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,
-  })),
-  searchText: PropTypes.string.isRequired,
-  state: PropTypes.shape({
-    state: {
-      address: PropTypes.string,
-      categoriesToShow: PropTypes.arrayOf(PropTypes.string),
-      'community-resources': PropTypes.bool,
-      cost: PropTypes.string,
-      'data-visualizations': PropTypes.bool,
-      drawerOpen: PropTypes.bool,
-      insurance: PropTypes.bool,
-      searchFetching: PropTypes.bool,
-      searchResults: PropTypes.arrayOf(PropTypes.shape({
-        categories: PropTypes.arrayOf(PropTypes.string),
-        description: PropTypes.string,
-        images: PropTypes.arrayOf(PropTypes.string),
-        objectID: PropTypes.string,
-        title: PropTypes.string,
-        url: PropTypes.string,
-      })),
-      searchText: PropTypes.string,
-      sources: PropTypes.array,
-      tools: PropTypes.bool,
-    }
+  })).isRequired,
+  search: PropTypes.shape({
+    isFetching: PropTypes.bool.isRequired,
+    results: PropTypes.arrayOf(PropTypes.shape({
+      categories: PropTypes.arrayOf(PropTypes.string),
+      description: PropTypes.string,
+      images: PropTypes.arrayOf(PropTypes.string),
+      objectID: PropTypes.string,
+      title: PropTypes.string,
+      url: PropTypes.string,
+    })).isRequired,
+    term: PropTypes.string.isRequired,
   }),
-  toggleDrawer: PropTypes.func.isRequired,
-  toggleFilter: PropTypes.func.isRequired,
-}
-
-fn.defaultProps = {
-  drawerOpen: false,
-  searchFetching: false,
-  searchResults: [],
-  searchText: '',
-  state: {
-    categoriesToShow: ALL_CATEGORIES
-  }
+  handleSearchChange: PropTypes.func.isRequired,
+  handleSearchSubmit: PropTypes.func.isRequired,
+  handleToggleCategory: PropTypes.func.isRequired,
+  handleToggleDrawer: PropTypes.func.isRequired,
 }
 
 export default fn
