@@ -164,6 +164,11 @@ const MainView = props => {
 }
 
 MainView.propTypes = {
+  classes: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    menuButton: PropTypes.string.isRequired,
+    progress: PropTypes.string.isRequired,
+  }),
   filters: PropTypes.shape({
     categories: PropTypes.shape({
       'data-visualizations': PropTypes.bool.isRequired,
