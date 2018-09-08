@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
 
-export default props => (
+const MapSearch = props => (
   <Paper
     elevation={1}
     style={{
@@ -62,6 +62,7 @@ export default props => (
                       }
                   return (
                     <div
+                      key={suggestion.id}
                       {...getSuggestionItemProps(suggestion, {
                         className,
                         style,
@@ -79,3 +80,7 @@ export default props => (
     </div>
   </Paper>
 )
+
+MapSearch.displayName = 'MapSearch'
+
+export default MapSearch
