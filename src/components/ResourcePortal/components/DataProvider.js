@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   any,
   assoc,
@@ -14,6 +15,11 @@ import {
 import { performSearch } from '../lib/search'
 
 export default class extends React.Component {
+  static displayName = 'ResourcePortalDataProvider'
+  static propTypes = {
+    render: PropTypes.func.isRequired,
+  }
+
   state = {
     filters: {
       categories: {
@@ -72,7 +78,7 @@ export default class extends React.Component {
       )
     } catch (err) {
       this.setState(assocPath(['search', 'isFetching'], false, this.state))
-      alert(err.message)
+      throw err
     }
   }
 
