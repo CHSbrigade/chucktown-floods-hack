@@ -23,8 +23,24 @@ import {
   Place,
   Search,
 } from '@material-ui/icons'
+import { withStyles } from '@material-ui/core/styles'
 import FilterListComp from './FilterList'
 import ResultCard from './ResultCard'
+
+const styles = theme => ({
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  },
+  progress: {
+    margin: theme.spacing.unit * 2,
+    color: 'black'
+  },
+})
 
 const fn = props => {
   const showCard = props => (
@@ -34,7 +50,7 @@ const fn = props => {
   )
 
   return (
-    <div className={props.classes.rootSearch}>
+    <div>
       <AppBar
         position="static"
         style={{
@@ -56,12 +72,11 @@ const fn = props => {
           </IconButton>
           <div>
             <Paper
-              className={props.classes.inputAppBar}
               style={{ position: 'relative', top: '2px', padding: '.5em' }}
               elevation={1}
             >
               <form onSubmit={props.handleSearchSubmit}>
-                <FormControl fullWidth className={props.classes.margin}>
+                <FormControl fullWidth>
                   <Input
                     id="adornment-amount"
                     value={props.search.term}
@@ -102,9 +117,6 @@ const fn = props => {
         anchor="right"
         onClose={props.handleToggleDrawer(false)}
         open={props.filters.visible}
-        classes={{
-          paper: props.classes.drawerPaper
-        }}
         ModalProps={{
           keepMounted: true // Better open performance on mobile.
         }}
@@ -158,13 +170,8 @@ const fn = props => {
 fn.propTypes = {
   classes: PropTypes.shape({
     content: PropTypes.string.isRequired,
-    flex: PropTypes.string.isRequired,
-    inputAppBar: PropTypes.string.isRequired,
     menuButton: PropTypes.string.isRequired,
-    paper: PropTypes.string.isRequired,
     progress: PropTypes.string.isRequired,
-    root: PropTypes.string.isRequired,
-    rootGrid: PropTypes.string.isRequired,
   }),
   filters: PropTypes.shape({
     categories: {
@@ -201,4 +208,4 @@ fn.propTypes = {
   handleToggleDrawer: PropTypes.func.isRequired,
 }
 
-export default fn
+export default withStyles(styles)(fn)
