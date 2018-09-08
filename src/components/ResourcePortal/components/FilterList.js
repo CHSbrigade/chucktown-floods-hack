@@ -9,10 +9,7 @@ import {
 
 export default class extends React.Component {
   render() {
-    const {
-      categories,
-      toggleCategory,
-    } = this.props
+    const { categories, toggleCategory } = this.props
 
     return (
       <React.Fragment>

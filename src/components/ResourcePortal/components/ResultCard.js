@@ -23,31 +23,31 @@ const styles = theme => ({
     width: '80%',
     margin: '0 auto',
     textAlign: 'left',
-    maxWidth: '900px'
+    maxWidth: '900px',
   },
   actions: {
-    display: 'flex'
+    display: 'flex',
   },
   chip: {
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
   },
   expand: {
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest
+      duration: theme.transitions.duration.shortest,
     }),
     marginLeft: 'auto',
     [theme.breakpoints.up('sm')]: {
-      marginRight: -8
-    }
+      marginRight: -8,
+    },
   },
   expandOpen: {
-    transform: 'rotate(180deg)'
+    transform: 'rotate(180deg)',
   },
   avatar: {
     width: 60,
-    height: 60
-  }
+    height: 60,
+  },
 })
 
 class ResultCard extends React.Component {
@@ -72,7 +72,7 @@ class ResultCard extends React.Component {
       'data-visualizations': <BarChart />,
       tools: <Grade />,
       tool: <Grade />,
-      'community-resources': <FormatAlignLeft />
+      'community-resources': <FormatAlignLeft />,
     })
 
     const AvaWar = props => {
@@ -89,7 +89,7 @@ class ResultCard extends React.Component {
       'community-resources': 'Community Resources',
       tools: 'Tools',
       tool: 'Tools',
-      insurance: 'insurance'
+      insurance: 'insurance',
     })
 
     return (
@@ -128,7 +128,7 @@ class ResultCard extends React.Component {
                   className="pointer"
                   key={img}
                 >
-                  <img src={img} alt='screenshot' />
+                  <img src={img} alt="screenshot" />
                 </a>
               )
             }, tail(this.props.images))}
@@ -149,7 +149,7 @@ class ResultCard extends React.Component {
           </Typography>
           <IconButton
             className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded
+              [classes.expandOpen]: this.state.expanded,
             })}
             onClick={this.handleExpandClick}
             aria-expanded={this.state.expanded}

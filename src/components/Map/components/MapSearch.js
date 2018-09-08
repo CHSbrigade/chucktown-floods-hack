@@ -11,7 +11,7 @@ export default props => (
       width: '100%',
       padding: '1.5em',
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
     }}
   >
     <div className="w-100">
@@ -30,13 +30,13 @@ export default props => (
             getInputProps,
             suggestions,
             getSuggestionItemProps,
-            loading
+            loading,
           }) => (
             <div style={{ width: '100%', display: 'inline-block' }}>
               <input
                 {...getInputProps({
                   placeholder: `try "Boomtown"`,
-                  className: 'location-search-input'
+                  className: 'location-search-input',
                 })}
                 style={{ padding: '1em', width: '100%' }}
               />
@@ -52,19 +52,19 @@ export default props => (
                         backgroundColor: '#fafafa',
                         cursor: 'pointer',
                         marginTop: '1em',
-                        fontFamiliy: 'roboto'
+                        fontFamiliy: 'roboto',
                       }
                     : {
                         backgroundColor: '#ffffff',
                         marginTop: '1em',
                         fontFamiliy: 'roboto',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
                       }
                   return (
                     <div
                       {...getSuggestionItemProps(suggestion, {
                         className,
-                        style
+                        style,
                       })}
                     >
                       <span>{suggestion.description}</span>

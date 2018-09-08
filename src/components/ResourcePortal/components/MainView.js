@@ -30,15 +30,15 @@ import ResultCard from './ResultCard'
 const styles = theme => ({
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.default,
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20
+    marginRight: 20,
   },
   progress: {
     margin: theme.spacing.unit * 2,
-    color: 'black'
+    color: 'black',
   },
 })
 
@@ -56,7 +56,7 @@ const MainView = props => {
         style={{
           backgroundColor: 'rgb(245, 245, 245)',
           zIndex: '5',
-          boxShadow: 'none'
+          boxShadow: 'none',
           // borderBottom: '1px solid lightgray'
         }}
       >
@@ -95,9 +95,7 @@ const MainView = props => {
           </div>
           <Hidden smDown>
             <Link to="/map">
-              <Button
-                style={{ position: 'absolute', top: 14, right: 60 }}
-              >
+              <Button style={{ position: 'absolute', top: 14, right: 60 }}>
                 <Place />
               </Button>
             </Link>
@@ -116,7 +114,7 @@ const MainView = props => {
         onClose={props.handleToggleDrawer(false)}
         open={props.filters.visible}
         ModalProps={{
-          keepMounted: true // Better open performance on mobile.
+          keepMounted: true, // Better open performance on mobile.
         }}
       >
         <div
@@ -130,7 +128,7 @@ const MainView = props => {
           style={{
             textAlign: 'center',
             marginTop: '2em',
-            letterSpacing: '.3em'
+            letterSpacing: '.3em',
           }}
           gutterBottom
         >
@@ -144,7 +142,7 @@ const MainView = props => {
       <main className={props.classes.content}>
         <div
           style={{
-            backgroundColor: '#f5f5f5'
+            backgroundColor: '#f5f5f5',
           }}
           className="vh-100 dt w-100 tc cover"
         >
@@ -175,24 +173,28 @@ MainView.propTypes = {
     }),
     visible: PropTypes.bool.isRequired,
   }).isRequired,
-  results: PropTypes.arrayOf(PropTypes.shape({
-    categories: PropTypes.arrayOf(PropTypes.string),
-    description: PropTypes.string,
-    images: PropTypes.arrayOf(PropTypes.string),
-    objectID: PropTypes.string,
-    title: PropTypes.string,
-    url: PropTypes.string,
-  })).isRequired,
-  search: PropTypes.shape({
-    isFetching: PropTypes.bool.isRequired,
-    results: PropTypes.arrayOf(PropTypes.shape({
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
       categories: PropTypes.arrayOf(PropTypes.string),
       description: PropTypes.string,
       images: PropTypes.arrayOf(PropTypes.string),
       objectID: PropTypes.string,
       title: PropTypes.string,
       url: PropTypes.string,
-    })).isRequired,
+    })
+  ).isRequired,
+  search: PropTypes.shape({
+    isFetching: PropTypes.bool.isRequired,
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        categories: PropTypes.arrayOf(PropTypes.string),
+        description: PropTypes.string,
+        images: PropTypes.arrayOf(PropTypes.string),
+        objectID: PropTypes.string,
+        title: PropTypes.string,
+        url: PropTypes.string,
+      })
+    ).isRequired,
     term: PropTypes.string.isRequired,
   }),
   handleSearchChange: PropTypes.func.isRequired,

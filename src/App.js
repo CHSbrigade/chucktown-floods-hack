@@ -11,11 +11,7 @@ class App extends Component {
         <HashRouter>
           <Switch>
             <Route exact path="/" component={Map} />
-            <Route
-              exact
-              path="/resources"
-              component={ResourcePortal}
-            />
+            <Route exact path="/resources" component={ResourcePortal} />
           </Switch>
         </HashRouter>
       </div>
