@@ -13,7 +13,7 @@ class App extends Component {
             <Route exact path="/" component={MapContainer} />
             <Route
               exact
-              path="/search"
+              path="/resources"
               component={ResourcePortalPage}
             />
           </Switch>
