@@ -4,6 +4,8 @@ import ReactMapGL from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 export default class extends React.Component {
+  static displayName = 'Map'
+
   render() {
     const { updateViewport, ...restProps } = this.props
 
