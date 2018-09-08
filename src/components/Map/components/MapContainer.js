@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import ContainerDimensions from 'react-container-dimensions'
 import { DateTime } from 'luxon'
 import { compose, map, prop, pluck } from 'ramda'
@@ -10,6 +11,13 @@ import MapSlider from './MapSlider'
 import fetchTides from '../lib/tides'
 
 export default class extends React.Component {
+  static displayName = 'MapContainer'
+  static propTypes = {
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+    zoom: PropTypes.number,
+  }
+
   constructor(props) {
     super(props)
 
@@ -42,6 +50,7 @@ export default class extends React.Component {
     const tides = await fetchTides({ start: t })
 
     const extractMarkers = compose(
+      // eslint-disable-next-line new-cap
       map(str => new DateTime.fromFormat(str, 'yyyy-MM-dd HH:mm')),
       pluck('t'),
       prop('data')
