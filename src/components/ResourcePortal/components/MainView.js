@@ -128,7 +128,7 @@ const fn = props => {
           <Close />
         </div>
         <Typography
-          variant="h2"
+          variant="title"
           style={{
             textAlign: 'center',
             marginTop: '2em',
