@@ -102,6 +102,7 @@ class ResultCard extends React.Component {
                 style={{ textDecoration: 'none' }}
                 href={this.props.url}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <OpenInNew style={{ textDecoration: 'none', color: 'black' }} />
               </a>
@@ -125,6 +126,7 @@ class ResultCard extends React.Component {
                   style={{ textDecoration: 'none' }}
                   href={this.props.url}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="pointer"
                   key={img}
                 >
