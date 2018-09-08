@@ -134,7 +134,7 @@ class ResultCard extends React.Component {
           </div>
         </Collapse>
         <CardActions className={classes.actions} disableActionSpacing>
-          <Typography component="p">
+          <Typography component="div">
             {map(x => {
               return (
                 <Chip
