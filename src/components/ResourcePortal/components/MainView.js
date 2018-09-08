@@ -96,7 +96,6 @@ const fn = props => {
           <Hidden smDown>
             <Link to="/map">
               <Button
-                color="black"
                 style={{ position: 'absolute', top: 14, right: 60 }}
               >
                 <Place />
@@ -104,7 +103,6 @@ const fn = props => {
             </Link>
           </Hidden>
           <Button
-            color="black"
             style={{ position: 'absolute', top: 14, right: 10 }}
             onClick={props.handleToggleDrawer()}
           >
