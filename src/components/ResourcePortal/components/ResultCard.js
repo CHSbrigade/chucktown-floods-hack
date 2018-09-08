@@ -126,6 +126,7 @@ class ResultCard extends React.Component {
                   href={this.props.url}
                   target="_blank"
                   className="pointer"
+                  key={img}
                 >
                   <img src={img} alt='screenshot' />
                 </a>
@@ -141,6 +142,7 @@ class ResultCard extends React.Component {
                   avatar={<Avatar>{iconMap(x)}</Avatar>}
                   label={categoriesMap(x)}
                   className={classes.chip}
+                  key={x}
                 />
               )
             }, this.props.categories)}

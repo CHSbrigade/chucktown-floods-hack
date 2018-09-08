@@ -44,7 +44,7 @@ const styles = theme => ({
 
 const fn = props => {
   const showCard = props => (
-    <div className="mb2">
+    <div key={props.title} className="mb2">
       <ResultCard {...props} />
     </div>
   )
