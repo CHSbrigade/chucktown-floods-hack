@@ -168,11 +168,6 @@ const fn = props => {
 }
 
 fn.propTypes = {
-  classes: PropTypes.shape({
-    content: PropTypes.string.isRequired,
-    menuButton: PropTypes.string.isRequired,
-    progress: PropTypes.string.isRequired,
-  }),
   filters: PropTypes.shape({
     categories: {
       'data-visualizations': PropTypes.bool.isRequired,

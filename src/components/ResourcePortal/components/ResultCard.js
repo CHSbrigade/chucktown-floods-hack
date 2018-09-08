@@ -52,13 +52,6 @@ const styles = theme => ({
 
 class ResultCard extends React.Component {
   static propTypes = {
-    classes: PropTypes.shape({
-      actions: PropTypes.string,
-      avatar: PropTypes.string,
-      card: PropTypes.string,
-      chip: PropTypes.string,
-      purlpleAvatar: PropTypes.string,
-    }),
     categories: PropTypes.arrayOf(PropTypes.string),
     description: PropTypes.string.isRequired,
     images: PropTypes.arrayOf(PropTypes.string),
