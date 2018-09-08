@@ -2,6 +2,9 @@
   "name": "chucktown-floods-hack",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "8.11.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
