@@ -42,7 +42,7 @@ const styles = theme => ({
   },
 })
 
-const fn = props => {
+const MainView = props => {
   const showCard = props => (
     <div key={props.title} className="mb2">
       <ResultCard {...props} />
@@ -165,14 +165,14 @@ const fn = props => {
   )
 }
 
-fn.propTypes = {
+MainView.propTypes = {
   filters: PropTypes.shape({
-    categories: {
+    categories: PropTypes.shape({
       'data-visualizations': PropTypes.bool.isRequired,
       'community-resources': PropTypes.bool.isRequired,
       tools: PropTypes.bool.isRequired,
       insurance: PropTypes.bool.isRequired,
-    },
+    }),
     visible: PropTypes.bool.isRequired,
   }).isRequired,
   results: PropTypes.arrayOf(PropTypes.shape({
@@ -201,4 +201,4 @@ fn.propTypes = {
   handleToggleDrawer: PropTypes.func.isRequired,
 }
 
-export default withStyles(styles)(fn)
+export default withStyles(styles)(MainView)
