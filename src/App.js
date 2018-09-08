@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router'
 import { HashRouter } from 'react-router-dom'
-import MapContainer from './components/Map/components/MapContainer'
-import ResourcePortalPage from './components/ResourcePortal'
+import Map from './components/Map'
+import ResourcePortal from './components/ResourcePortal'
 
 class App extends Component {
   render() {
@@ -10,11 +10,11 @@ class App extends Component {
       <div className="App">
         <HashRouter>
           <Switch>
-            <Route exact path="/" component={MapContainer} />
+            <Route exact path="/" component={Map} />
             <Route
               exact
               path="/resources"
-              component={ResourcePortalPage}
+              component={ResourcePortal}
             />
           </Switch>
         </HashRouter>
