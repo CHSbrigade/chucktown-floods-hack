@@ -25,10 +25,6 @@ const styles = theme => ({
     textAlign: 'left',
     maxWidth: '900px'
   },
-  media: {
-    height: 0,
-    paddingTop: '56.25%' // 16:9
-  },
   actions: {
     display: 'flex'
   },
