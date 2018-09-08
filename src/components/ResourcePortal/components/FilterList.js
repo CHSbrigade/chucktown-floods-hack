@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   List,
   ListItemIcon,
@@ -8,6 +9,17 @@ import {
 } from '@material-ui/core'
 
 export default class extends React.Component {
+  static displayName = 'ResourcePortalFilterList'
+  static propTypes = {
+    categories: PropTypes.shape({
+      'data-visualizations': PropTypes.bool,
+      'community-resources': PropTypes.bool,
+      tools: PropTypes.bool,
+      insurance: PropTypes.bool,
+    }).isRequired,
+    toggleCategory: PropTypes.func.isRequired,
+  }
+
   render() {
     const { categories, toggleCategory } = this.props
 
