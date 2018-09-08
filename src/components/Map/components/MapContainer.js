@@ -45,7 +45,6 @@ export default class extends React.Component {
   async initTS () {
     const t = DateTime.local().minus({hours: 5 })
     const tides = await fetchTides({start: t})
-    console.log(tides)
 
     const extractMarkers = compose(
       map(str => new DateTime.fromFormat(str, 'yyyy-MM-dd HH:mm')),
