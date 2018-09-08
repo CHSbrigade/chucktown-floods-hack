@@ -33,6 +33,6 @@ const queryParams = compose(
 
 const formatTs = ts => ts.toFormat('yyyyMMdd HH:mm')
 
-const beginTs = ts => (ts ? ts : DateTime.local().minus({ hours: 5 }))
+const beginTs = ts => ts || DateTime.local().minus({ hours: 5 })
 
-const endTs = ts => (ts ? ts : DateTime.local())
+const endTs = ts => ts || DateTime.local()
