@@ -1,15 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import FormControl from '@material-ui/core/FormControl'
-import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import Paper from '@material-ui/core/Paper'
-import Search from '@material-ui/icons/Search'
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng
-} from 'react-places-autocomplete'
-import Home from '@material-ui/icons/Home'
+import PlacesAutocomplete from 'react-places-autocomplete'
 import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace'
 
 export default props => (
@@ -22,12 +14,6 @@ export default props => (
       justifyContent: 'center'
     }}
   >
-    {/* <div style={{ position: 'absolute', left: '1em', top: '1em' }}>
-      <Link color="black" style={{ color: 'black' }} to="/">
-        <Home />
-      </Link>
-    </div> */}
-
     <div className="w-100">
       <Link to="/">
         <KeyboardBackspace

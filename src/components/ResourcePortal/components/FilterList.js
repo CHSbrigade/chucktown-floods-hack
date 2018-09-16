@@ -5,22 +5,13 @@ import {
   Checkbox,
   ListItem,
   ListItemText,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Input
-} from '../../node_modules/@material-ui/core'
-import { map } from 'ramda'
-import baseUrls from '../base-url.json'
+} from '@material-ui/core'
 
 export default class extends React.Component {
   render() {
     const {
-      toggleFilter,
-      state,
-      handleSelectCost,
-      handleSelectSource
+      categories,
+      toggleCategory,
     } = this.props
 
     return (
@@ -29,8 +20,8 @@ export default class extends React.Component {
           <ListItem>
             <ListItemIcon>
               <Checkbox
-                onChange={toggleFilter('tools')}
-                checked={state.tools}
+                onChange={toggleCategory('tools')}
+                checked={categories.tools}
               />
             </ListItemIcon>
             <ListItemText primary="Tools" />
@@ -38,8 +29,8 @@ export default class extends React.Component {
           <ListItem>
             <ListItemIcon>
               <Checkbox
-                onChange={toggleFilter('data-visualizations')}
-                checked={state['data-visualizations']}
+                onChange={toggleCategory('data-visualizations')}
+                checked={categories['data-visualizations']}
               />
             </ListItemIcon>
             <ListItemText primary="Data Visualizations" />
@@ -47,8 +38,8 @@ export default class extends React.Component {
           <ListItem>
             <ListItemIcon>
               <Checkbox
-                onChange={toggleFilter('community-resources')}
-                checked={state['community-resources']}
+                onChange={toggleCategory('community-resources')}
+                checked={categories['community-resources']}
               />
             </ListItemIcon>
             <ListItemText primary="Community Resources" />
@@ -56,8 +47,8 @@ export default class extends React.Component {
           <ListItem>
             <ListItemIcon>
               <Checkbox
-                onChange={toggleFilter('insurance')}
-                checked={state.insurance}
+                onChange={toggleCategory('insurance')}
+                checked={categories.insurance}
               />
             </ListItemIcon>
             <ListItemText primary="Insurance" />

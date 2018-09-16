@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import ContainerDimensions from 'react-container-dimensions'
 import { DateTime } from 'luxon'
 import { compose, map, prop, pluck } from 'ramda'
-import PlacesAutocomplete, {
+import {
   geocodeByAddress,
   getLatLng
 } from 'react-places-autocomplete'
@@ -10,8 +10,7 @@ import Map from './Map'
 import MapSearch from './MapSearch'
 import MapSlider from './MapSlider'
 
-import fetchTides from '../data/tides'
-import FloodLayers from '../data/flood-layers.json'
+import fetchTides from '../lib/tides'
 
 export default class extends React.Component {
   constructor(props) {
@@ -30,7 +29,6 @@ export default class extends React.Component {
         precip: []
       },
       zoom: props.zoom || 16.5,
-      extraLayers: [FloodLayers[0]]
     }
 
     this.initTS = this.initTS.bind(this)
@@ -45,7 +43,6 @@ export default class extends React.Component {
   async initTS () {
     const t = DateTime.local().minus({hours: 5 })
     const tides = await fetchTides({start: t})
-    console.log(tides)
 
     const extractMarkers = compose(
       map(str => new DateTime.fromFormat(str, 'yyyy-MM-dd HH:mm')),
