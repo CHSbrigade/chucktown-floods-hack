@@ -2,15 +2,14 @@ import fetch from 'isomorphic-fetch'
 import { DateTime } from 'luxon'
 import { compose, join, map, toPairs } from 'ramda'
 
-export default ({start, end} = {}) => {
+export default ({ start, end } = {}) => {
   const url = `${config.baseUrl}?${queryParams({
     ...config.defaultParams,
     begin_date: formatTs(beginTs(start)),
-    end_date: formatTs(endTs(end))
+    end_date: formatTs(endTs(end)),
   })}`
 
-  return fetch(url)
-    .then(res => res.json())
+  return fetch(url).then(res => res.json())
 }
 
 const config = {
@@ -22,21 +21,18 @@ const config = {
     station: '8665530',
     time_zone: 'lst',
     units: 'english',
-  }
+  },
 }
 
 const queryParams = compose(
   encodeURI,
   join('&'),
-  map(([k,v]) => `${k}=${v}`),
-  toPairs,
+  map(([k, v]) => `${k}=${v}`),
+  toPairs
 )
 
 const formatTs = ts => ts.toFormat('yyyyMMdd HH:mm')
 
-const beginTs = ts => ts ?
-  ts :
-  DateTime.local().minus({ hours: 5 })
+const beginTs = ts => ts || DateTime.local().minus({ hours: 5 })
 
-const endTs = ts => ts ? ts : DateTime.local()
-
+const endTs = ts => ts || DateTime.local()

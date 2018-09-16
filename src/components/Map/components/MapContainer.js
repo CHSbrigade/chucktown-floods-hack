@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import ContainerDimensions from 'react-container-dimensions'
 import { DateTime } from 'luxon'
 import { compose, map, prop, pluck } from 'ramda'
-import {
-  geocodeByAddress,
-  getLatLng
-} from 'react-places-autocomplete'
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Map from './Map'
 import MapSearch from './MapSearch'
 import MapSlider from './MapSlider'
@@ -13,6 +11,13 @@ import MapSlider from './MapSlider'
 import fetchTides from '../lib/tides'
 
 export default class extends React.Component {
+  static displayName = 'MapContainer'
+  static propTypes = {
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+    zoom: PropTypes.number,
+  }
+
   constructor(props) {
     super(props)
 
@@ -26,7 +31,7 @@ export default class extends React.Component {
         idx: -1,
         markers: [],
         tides: [],
-        precip: []
+        precip: [],
       },
       zoom: props.zoom || 16.5,
     }
@@ -36,15 +41,16 @@ export default class extends React.Component {
     this.updateViewport = this.updateViewport.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.initTS()
   }
 
-  async initTS () {
-    const t = DateTime.local().minus({hours: 5 })
-    const tides = await fetchTides({start: t})
+  async initTS() {
+    const t = DateTime.local().minus({ hours: 5 })
+    const tides = await fetchTides({ start: t })
 
     const extractMarkers = compose(
+      // eslint-disable-next-line new-cap
       map(str => new DateTime.fromFormat(str, 'yyyy-MM-dd HH:mm')),
       pluck('t'),
       prop('data')
@@ -63,13 +69,13 @@ export default class extends React.Component {
         idx: Math.floor(markers.length / 2),
         markers,
         tides: extractTides(tides),
-        precip: []
-      }
+        precip: [],
+      },
     })
   }
 
-  render () {
-    return(
+  render() {
+    return (
       <div style={{ height: '100vh', width: '100vw' }}>
         <ContainerDimensions>
           {({ width, height }) => (
@@ -92,7 +98,7 @@ export default class extends React.Component {
                 height={height}
                 width={width}
                 onViewportChange={this.updateViewport}
-                mapStyle='mapbox://styles/brychappell/cjl9wskda0hxb2snvpjum5jve'
+                mapStyle="mapbox://styles/brychappell/cjl9wskda0hxb2snvpjum5jve"
                 opacity={90}
               />
               <div className="absolute bottom-1 pa1">
@@ -105,7 +111,7 @@ export default class extends React.Component {
     )
   }
 
-  renderSlider () {
+  renderSlider() {
     const { idx, markers, tides } = this.state.ts
     const tsLabel = markers[idx].toLocaleString(DateTime.DATETIME_FULL)
 
@@ -126,7 +132,7 @@ export default class extends React.Component {
     this.setState({ address })
   }
 
-  async handleAddressSelect (address) {
+  async handleAddressSelect(address) {
     this.setState({ address: address })
 
     try {
@@ -142,7 +148,7 @@ export default class extends React.Component {
     }
   }
 
-  updateViewport (viewport) {
+  updateViewport(viewport) {
     this.setState(viewport)
   }
 }

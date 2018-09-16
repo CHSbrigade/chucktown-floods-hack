@@ -2,7 +2,7 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Slider from '@material-ui/lab/Slider'
 
-export default props => {
+const MapSlider = props => {
   const { tsLabel, tideValue, ...sliderProps } = props
 
   return (
@@ -18,3 +18,7 @@ export default props => {
     </div>
   )
 }
+
+MapSlider.displayName = 'MapSlider'
+
+export default MapSlider
